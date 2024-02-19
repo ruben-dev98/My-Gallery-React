@@ -1,16 +1,16 @@
 import styles from './ImageComponent.module.css';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ImgOptionsComponent } from "./ImgOptionsComponent";
 
 
 
 export const ImageComponent = ({id, src}) => {
-    const [display, setDisplay] = useState();
+    const [display, setDisplay] = useState(false);
     
     return (
-        <>
-            <img onMouseOver={() => setDisplay(true)} onMouseLeave={() => setDisplay(false)} className={styles.imgs} src={src} />
+        <card className={styles.card} onMouseOver={() => setDisplay(true)} onMouseLeave={() => setDisplay(false)}>
+            <img className={styles.imgs} src={src} />
             <ImgOptionsComponent display={display} imgId={id}/>
-        </>
+        </card>
     );
 }

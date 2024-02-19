@@ -6,9 +6,30 @@
 }
 
 .title {
-    font-size: 2.5rem;
+    text-decoration: none;
+    color: #FFF;
+    font-size: 3rem;
+    cursor: pointer;
+    margin: 0;
+    padding: 0.5em 1em;
+}
+
+.title:active, .title:hover, .title:link, .title:visited {
+    text-decoration: none;
+    color: #FFF;
 }
 
 .menu {
-    font-size: 2rem;
+    color: #FFF;
+    text-decoration: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    margin: 0;
+    padding: 0.5em 1em;
+    font-weight: lighter;
+}
+
+.menu:active, .menu:hover, .menu:link, .menu:visited {
+    text-decoration: none;
+    color: #FFF;
 }

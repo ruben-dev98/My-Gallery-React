@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import { searchData, searchStatus } from "../features/search/searchSlice";
 import { loadData } from "../features/search/searchThunk";
 import { HeaderComponent } from '../components/HeaderComponents/HeaderComponent';
@@ -11,6 +11,10 @@ export const HomePage = () => {
     const dispatch = useDispatch();
     const data = useSelector(searchData);
     const status = useSelector(searchStatus);
+    const title = 'Increíble Galería de Imágenes Para Descargar';
+    const subtitle = 'Contamos con más de 1 millón de imágenes gracias a Unplash';
+    const searchText = 'Search in library';
+    
     
     useEffect(() => {
         if(status === 'idle') {
@@ -24,7 +28,7 @@ export const HomePage = () => {
 
     return (
         <>
-            <HeaderComponent/>
+            <HeaderComponent title={title} subtitle={subtitle} searchText={searchText}/>
             { showSpinner ? <p>Loading...</p> : <ListImageComponent listImages={data}/> }
         </>
     );
