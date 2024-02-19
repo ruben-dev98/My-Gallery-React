@@ -1,16 +1,18 @@
-import { useEffect } from "react"
-import styles from  './ListImagesComponent.module.css';
-import { ImgOptionsComponent } from "../ImagesComponents/ImgOptionsComponent";
+import { useContext } from "react"
+import styles from './ListImagesComponent.module.css';
 import { ImageComponent } from "../ImagesComponents/ImageComponent";
+import { Img } from "../../app/Img";
+import { UserContext } from "../../app/UserContext";
 
 export const ListImageComponent = ({ listImages }) => {
     console.log(listImages);
-    return ( 
+    return (
         <section className={styles.listImgs}>
             {
-                listImages.map((img, index) =>{
+                listImages.map((img, index) => {
+                    const image = new Img(img.id, img.description, img.width, img.height, img.urls.raw, img.likes, img.created_at, img.urls.full);
                     return (
-                        <ImageComponent key={img.id} id={img.id} src={img.urls.raw} index={index}/>
+                        <ImageComponent img={image} key={image.id} id={image.id} src={image.src} index={index} />
                     )
                 })
             }

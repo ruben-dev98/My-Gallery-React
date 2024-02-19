@@ -28,13 +28,18 @@
     color: #FFF;
     background-color: #02242D;
     font-size: 1rem;
-    padding: .5em 1em;
+    padding: .6em 2.5em;
 }
 
 ::placeholder {
     color: #FFF;
 }
 
-.input::after {
-    background-image: url('../../assets/icon/search.svg');
+.icon {
+    position: absolute;
+    left: 19%;
+}
+
+.search__container {
+    position: relative;
 }

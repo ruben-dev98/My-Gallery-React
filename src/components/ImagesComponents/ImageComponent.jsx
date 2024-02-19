@@ -4,13 +4,13 @@ import { ImgOptionsComponent } from "./ImgOptionsComponent";
 
 
 
-export const ImageComponent = ({id, src}) => {
+export const ImageComponent = ({id, src, img}) => {
     const [display, setDisplay] = useState(false);
     
     return (
-        <card className={styles.card} onMouseOver={() => setDisplay(true)} onMouseLeave={() => setDisplay(false)}>
+        <div className={styles.card} onMouseOver={() => setDisplay(true)} onMouseLeave={() => setDisplay(false)}>
             <img className={styles.imgs} src={src} />
-            <ImgOptionsComponent display={display} imgId={id}/>
-        </card>
+            <ImgOptionsComponent display={display} img={img}/>
+        </div>
     );
 }

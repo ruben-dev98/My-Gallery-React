@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { Provider, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { searchData, searchStatus } from "../features/search/searchSlice";
 import { loadData } from "../features/search/searchThunk";
 import { HeaderComponent } from '../components/HeaderComponents/HeaderComponent';
-import { FooterComponent } from "../components/FooterComponents/FooterComponent";
 import { ListImageComponent } from "../components/ListComponents/ListImagesComponent";
 
 export const HomePage = () => {

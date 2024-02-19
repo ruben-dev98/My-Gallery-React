@@ -6,7 +6,7 @@ export const MainPage = () => {
 
     return (
         <>
-        <UserContext.Provider user={false}>
+        <UserContext.Provider value={false}>
             <Outlet></Outlet>
             <FooterComponent/>
         </UserContext.Provider>
