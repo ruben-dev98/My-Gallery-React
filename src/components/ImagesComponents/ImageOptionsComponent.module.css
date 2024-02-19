@@ -1,0 +1,10 @@
+.icons {
+    list-style-type: none; 
+    display: "flex"; 
+    justify-content: "space-evenly";
+}
+
+.icon {
+    width: 2em;
+    height: 2em;
+}

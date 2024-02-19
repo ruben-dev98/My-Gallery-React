@@ -1,0 +1,34 @@
+.search {
+    width: 100%;
+}
+
+.text {
+    width: 100%;
+    text-align: center;
+}
+
+.title {
+    font-size: 2rem;
+}
+
+.subtitle {
+    font-size: 2rem;
+}
+
+.input {
+    border-radius: 2em;
+    margin: 0 auto;
+    display: block;
+    color: #FFF;
+    background-color: #02242D;
+    font-size: 1rem;
+    padding: .5em 1em;
+}
+
+::placeholder {
+    color: #FFF;
+}
+
+.input::after {
+    background-image: url('../../assets/icon/search.svg');
+}
