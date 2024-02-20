@@ -1,7 +1,23 @@
+.tags__container {
+    margin-top: 2em;
+    padding: 0em 17em;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
 .tags {
-    
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .tag {
 
+}
+
+.text {
+    width: 20%;
+    font-size: 1.2rem;
+    text-align: center;
 }

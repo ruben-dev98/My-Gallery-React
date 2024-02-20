@@ -14,9 +14,8 @@ export const HomePage = () => {
     const subtitle = 'Contamos con más de 1 millón de imágenes gracias a Unplash';
     const searchText = 'Search in library';
     
-    
     useEffect(() => {
-        if(status === 'idle') {
+        if(status === 'idle' && data.length === 0) {
             dispatch(loadData());
         } else if(status === 'pending') {
             setShowSpinner(true);

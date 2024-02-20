@@ -13,6 +13,16 @@ export const searchByQuery = createAsyncThunk('search/loadDataByQuery', async (q
             Authorization: ACCESS__KEY
     } 
     });
-    const json = await response;
+    const json = await response.json();
     return json;
 });
+
+/*export const searchRandom = createAsyncThunk('search/loadDataByQuery', async () => {
+    const response = await fetch(`https://api.unsplash.com/search/photos/random`, {
+        headers: {
+            Authorization: ACCESS__KEY
+    } 
+    });
+    const json = await response.json();
+    return json;
+});*/

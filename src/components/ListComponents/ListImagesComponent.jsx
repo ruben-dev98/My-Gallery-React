@@ -1,11 +1,8 @@
-import { useContext } from "react"
 import styles from './ListImagesComponent.module.css';
 import { ImageComponent } from "../ImagesComponents/ImageComponent";
 import { Img } from "../../app/Img";
-import { UserContext } from "../../app/UserContext";
 
 export const ListImageComponent = ({ listImages }) => {
-    console.log(listImages);
     return (
         <section className={styles.listImgs}>
             {
@@ -16,6 +13,7 @@ export const ListImageComponent = ({ listImages }) => {
                     )
                 })
             }
+            
         </section>
     )
 }

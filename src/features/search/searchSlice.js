@@ -4,8 +4,7 @@ import { searchByQuery, loadData } from "./searchThunk";
 export const searchSlice = createSlice({
     name: 'search',
     initialState: {
-        data: {},
-        img: {},
+        data: [],
         status: 'idle',
         error: null
     },

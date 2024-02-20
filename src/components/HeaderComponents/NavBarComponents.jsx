@@ -4,8 +4,8 @@ export const NavBarComponent = () => {
 
     return (
         <nav className={styles.nav}>
-            <NavLink to="/"><h1 className={styles.title}>TITLE</h1></NavLink>
-            <NavLink to="/favorites"><h2 className={styles.menu}>My Photos</h2></NavLink>
+            <NavLink to="/" className={({isActive}) => isActive ? `${styles.navLink} ${styles.navLinkActive} ${styles.title}` : `${styles.navLink} ${styles.navLinkDark} ${styles.title}`}>TITLE</NavLink>
+            <NavLink to="/favorites" className={({isActive}) => isActive ? `${styles.navLink} ${styles.navLinkDark} ${styles.navLinkActive} ${styles.menu}`: `${styles.navLink} ${styles.menu}`}>My Photos</NavLink>
         </nav>
     )
 }

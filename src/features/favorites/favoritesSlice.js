@@ -12,10 +12,15 @@ export const favoritesSlice = createSlice({
         },
         getAllFavorites: (state, action) => {
             state = action.payload;
+        },
+        editDescription: (state, action) => {
+            const {id, desc} = action.payload;
+            const index = state.findIndex((el) => el.id === id);
+            state[index].desc = desc;
         }
     }
 });
 
-export const {addFavorite, removeFavorite, getAllFavorites} = favoritesSlice.actions;
+export const {addFavorite, removeFavorite, getAllFavorites, editDescription} = favoritesSlice.actions;
 export const favorites = (state) => state.favorites;
 export default favoritesSlice.reducer;
