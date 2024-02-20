@@ -8,11 +8,6 @@ export const searchSlice = createSlice({
         status: 'idle',
         error: null
     },
-    reducer: {
-        moreInfo: (state, action) => {
-            state.img = action.payload;
-        }
-    },
     extraReducers: (builder) => {
         builder.addCase(loadData.pending, (state, action) => {
             state.status = 'pending';
@@ -41,7 +36,5 @@ export const searchSlice = createSlice({
 });
 
 export const searchData = (state) => state.search.data;
-export const { moreInfo } = searchSlice.actions;
-export const image = (state) => state.search.img;
 export const searchStatus = (state) => state.search.status;
 export default searchSlice.reducer;

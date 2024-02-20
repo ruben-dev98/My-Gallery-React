@@ -1,8 +1,5 @@
 .orderBy {
+    margin-top: 0.5em;
     padding: 0 17em;
-}
-
-.orderBy__select {
-    margin-right: 0;
-    margin-left: auto;
+    text-align: end;
 }

@@ -16,11 +16,24 @@ export const favoritesSlice = createSlice({
         editDescription: (state, action) => {
             const {id, desc} = action.payload;
             const index = state.findIndex((el) => el.id === id);
-            state[index].desc = desc;
+            state[index].description = desc;
+        },
+        sortFavorites: (state, action) => {
+            state = state.sort((a, b) => {
+                if(a[action.payload] < b[action.payload]) {
+                    return -1;
+                } else if(a[action.payload] > b[action.payload]) {
+                    return 1;
+                }
+                return 0;
+            });
+        },
+        filterFavorites: (state, actions) => {
+
         }
     }
 });
 
-export const {addFavorite, removeFavorite, getAllFavorites, editDescription} = favoritesSlice.actions;
+export const {addFavorite, removeFavorite, getAllFavorites, editDescription, sortFavorites} = favoritesSlice.actions;
 export const favorites = (state) => state.favorites;
 export default favoritesSlice.reducer;

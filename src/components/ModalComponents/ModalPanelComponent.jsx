@@ -5,14 +5,12 @@ import { useDispatch } from 'react-redux';
 
 export const ModalPanelComponent = ({ img, isEdit }) => {
     const dispatch = useDispatch();
-    const [desc, setDesc] = useState(img.desc)
     const handleExitModal = (event) => {
         document.querySelector('#modalMoreInfo').close();
     }
 
     const handleEditSubmit = (event) => {
         event.preventDefault();
-        setDesc(desc);
         dispatch(editDescription({'id': img.id, 'desc': event.target.desc.value}));
     }
 
@@ -26,13 +24,14 @@ export const ModalPanelComponent = ({ img, isEdit }) => {
                 <>
                     <img className={styles.modal__img} src={img.src + '&w=1500&dpr=2'}/>
                     <span className={styles.label}>Description</span>
-                    <textarea className={styles.modal__desc} name="desc" value={desc} disabled={false}></textarea>
+                    <textarea className={styles.modal__desc} name="desc">{img.desc}</textarea>
+                    <input type='submit' value={'Edit Image'}/>
                 </>
                 : 
                 <>
                     <img className={styles.modal__img} src={img.src + '&w=1500&dpr=2'}/>
                     <span className={styles.label}>Description</span>
-                    <textarea className={styles.modal__desc} name="desc" value={desc} disabled={true}></textarea>
+                    <textarea className={styles.modal__desc} name="desc" value={img.desc} disabled={true}></textarea>
                     <span className={styles.label}>Created At</span>
                     <p className={styles.modal__date}>{img.created_at}</p>
                     <span className={styles.label}>Likes</span>
