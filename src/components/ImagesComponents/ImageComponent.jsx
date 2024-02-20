@@ -4,11 +4,11 @@ import { ImgOptionsComponent } from "./ImgOptionsComponent";
 
 
 
-export const ImageComponent = ({id, src, img}) => {
+export const ImageComponent = ({src, img}) => {
     const [display, setDisplay] = useState(false);
     
     return (
-        <div key={id} className={styles.card} onMouseOver={() => setDisplay(true)} onMouseLeave={() => setDisplay(false)}>
+        <div key={img.id} className={styles.card} onMouseOver={() => setDisplay(true)} onMouseLeave={() => setDisplay(false)}>
             <img className={styles.imgs} src={src} />
             <ImgOptionsComponent display={display} img={img}/>
         </div>

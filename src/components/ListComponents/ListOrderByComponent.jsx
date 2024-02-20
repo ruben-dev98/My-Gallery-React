@@ -33,8 +33,8 @@ export const ListOrderByComponent = () => {
                     onChange={handleFilterChange}
                 >
                     <MenuItem value='likes'>Likes</MenuItem>
-                    <MenuItem value='height'>Width</MenuItem>
-                    <MenuItem value='width'>Height</MenuItem>
+                    <MenuItem value='height'>Height</MenuItem>
+                    <MenuItem value='width'>Width</MenuItem>
                     <MenuItem value='created_at'>Date Of Creation</MenuItem>
                 </Select>
             </FormControl>

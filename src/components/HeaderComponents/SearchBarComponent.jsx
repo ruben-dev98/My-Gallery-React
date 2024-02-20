@@ -1,13 +1,28 @@
 import styles from './SearchBarComponent.module.css';
-import search from '../../assets/icon/search.svg';
 import { useDispatch } from 'react-redux';
 import { searchByQuery } from '../../features/search/searchThunk';
+import { UserContext } from '../../app/UserContext';
+import { useContext, useState } from 'react';
+import { setSearchTerm } from '../../features/search/searchSlice';
+import { searchRandom } from './../../features/search/searchThunk';
 export const SearchBarComponent = ({title, subtitle, searchText}) => {
     const dispatch = useDispatch();
+    const user = useContext(UserContext);
+    
     const handleSearchSubmit = (event) => {
         event.preventDefault();
-        dispatch(searchByQuery(event.target.search.value));
+        if(event.target.search.value === '') {
+            dispatch(searchRandom());
+        } else  {
+            dispatch(searchByQuery(event.target.search.value));
+        }
+        
     };
+
+    const handleSearchFavoriteSubmit = (event) => {
+        event.preventDefault();
+        dispatch(setSearchTerm(event.target.search.value))
+    }
 
     return (
         <search className={styles.search}>
@@ -15,9 +30,9 @@ export const SearchBarComponent = ({title, subtitle, searchText}) => {
                 <p className={styles.title}>{title}</p>
                 <p className={styles.subtitle}>{subtitle}</p>
             </section>
-            <form onSubmit={handleSearchSubmit} className={styles.search__container}>
-                <img className={styles.icon} src={search}/>
-                <input className={styles.input} name='search' type="search" placeholder={searchText}/>
+            <form onSubmit={!user ? handleSearchSubmit : handleSearchFavoriteSubmit} className={styles.search__container}>
+                <button className={styles.icon} type='submit'></button>
+                <input autoComplete='off' className={styles.input} name='search' type="search" placeholder={searchText}/> 
             </form>
         </search>
     );

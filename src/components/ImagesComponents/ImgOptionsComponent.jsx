@@ -5,50 +5,48 @@ import download from '../../assets/icon/download.svg';
 import edit from '../../assets/icon/edit.svg';
 import moreInfo from '../../assets/icon/plus-circle.svg';
 import { Img } from '../../app/Img';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../app/UserContext';
 import { useDispatch, useSelector } from 'react-redux';
-import { addFavorite, favorites, removeFavorite } from '../../features/favorites/favoritesSlice';
-import { ModalPanelComponent } from '../ModalComponents/ModalPanelComponent';
+import { addFavorite, favorites, removeFavorite, setImageFavorite } from '../../features/favorites/favoritesSlice';
+import { setImageHome } from '../../features/search/searchSlice';
 
-export const ImgOptionsComponent = ({display, img}) => {
-    const [isEdit, setIsEdit] = useState(false);
+export const ImgOptionsComponent = ({ display, img }) => {
     const user = useContext(UserContext);
     const dispatch = useDispatch();
     const favs = useSelector(favorites);
-    const modal = document.querySelector('#modalMoreInfo');
+    const modal = document.querySelector(`#modal`);
 
     const handleAddFavorite = () => {
-        if(favs.find((el) => el.id === img.id) === undefined) {
+        if (favs.find((el) => el.id === img.id) === undefined) {
             dispatch(addFavorite(img.toJson()));
         }
     }
     const handleRemoveFavorite = () => {
         dispatch(removeFavorite(img.toJson()));
     }
-    const handleMoreInfo = () => {
-        setIsEdit(false);
+    const handleShowModal = () => {
+        if(!user) {
+            dispatch(setImageHome(img.toJson()));
+        } else {
+            dispatch(setImageFavorite(img.toJson()));
+        }
         modal.showModal();
+        
     }
     const handleDownload = () => {
         //dispatch(download)
     }
-    const handleEdit = () => {
-        setIsEdit(true);
-        modal.showModal();
-    }
 
     return (
         <>
-        { display &&
-        <ul className={styles.icons}>
-            <li>{!user ? <img onClick={handleAddFavorite} className={styles.icon} src={addHeart}/> : <img onClick={handleRemoveFavorite} className={styles.icon} src={removeHeart}/>}</li>
-            { user && <li><img onClick={handleDownload} className={styles.icon} src={download}/></li> }
-            { user && <li><img onClick={handleEdit} className={styles.icon} src={edit}/></li> }
-            <li><img onClick={handleMoreInfo} className={styles.icon} src={moreInfo}/></li>
-        </ul> }
-
-        <ModalPanelComponent img={img} isEdit={isEdit}/>
+            {display &&
+                <ul className={styles.icons}>
+                    <li>{!user ? <img onClick={handleAddFavorite} className={styles.icon} src={addHeart} /> : <img onClick={handleRemoveFavorite} className={styles.icon} src={removeHeart} />}</li>
+                    {user && <li><img onClick={handleDownload} className={styles.icon} src={download} /></li>}
+                    {user && <li><img onClick={handleShowModal} className={styles.icon} src={edit} /></li>}
+                    <li><img onClick={handleShowModal} className={styles.icon} src={moreInfo} /></li>
+                </ul>}
         </>
     )
 }

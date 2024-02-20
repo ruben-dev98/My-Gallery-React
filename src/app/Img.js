@@ -1,6 +1,6 @@
 export class Img {
     
-    constructor(id, desc, width, height, src, likes, created_at, download) {
+    constructor(id, desc, width, height, src, likes, created_at, download, selector) {
         this.id = id;
         this.desc = desc;
         this.width = width;
@@ -9,7 +9,7 @@ export class Img {
         this.likes = likes;
         this.created_at = created_at;
         this.download = download;
-        this.favorites = false;
+        this.selector = selector;
     }
 
     setFav() {
@@ -23,7 +23,7 @@ export class Img {
     toJson() {
         return {
             'id': this.id,
-            'description': this.desc,
+            'description': this.desc || '',
             'height': this.height,
             'width': this.width,
             'likes': this.likes,
@@ -31,8 +31,7 @@ export class Img {
             'urls': {
                 'raw': this.src,
             },
-            'download': this.download,
-            'fav': this.favorites
+            'download': this.download
         }
     }
 }

@@ -15,7 +15,7 @@ export const HomePage = () => {
     const searchText = 'Search in library';
     
     useEffect(() => {
-        if(status === 'idle' && data.length === 0) {
+        if(status === 'idle') {
             dispatch(loadData());
         } else if(status === 'pending') {
             setShowSpinner(true);

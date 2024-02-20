@@ -1,12 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { searchByQuery, loadData } from "./searchThunk";
+import { searchByQuery, loadData, searchRandom } from "./searchThunk";
 
 export const searchSlice = createSlice({
     name: 'search',
     initialState: {
         data: [],
+        search: '',
+        img: {},
+        total: 0,
+        pages: 0,
         status: 'idle',
         error: null
+    },
+    reducers: {
+        setSearchTerm: (state, action) => {
+            state.search = action.payload;
+        },
+        setImageHome: (state, action) => {
+            state.img = action.payload;
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(loadData.pending, (state, action) => {
@@ -26,9 +38,23 @@ export const searchSlice = createSlice({
         })
         .addCase(searchByQuery.fulfilled, (state, action) => {
             state.status = 'fulfilled';
-            state.data = action.payload;
+            state.data = action.payload.results;
+            state.total = action.payload.total;
+            state.pages = action.payload.total_pages;
         }) 
         .addCase(searchByQuery.rejected, (state, action) => {
+            state.status = 'rejected';
+            state.error = action.error.message;
+        })
+        // Cases load random data
+        .addCase(searchRandom.pending, (state, action) => {
+            state.status = 'pending';
+        })
+        .addCase(searchRandom.fulfilled, (state, action) => {
+            state.status = 'fulfilled';
+            state.data = action.payload;
+        }) 
+        .addCase(searchRandom.rejected, (state, action) => {
             state.status = 'rejected';
             state.error = action.error.message;
         })
@@ -37,4 +63,7 @@ export const searchSlice = createSlice({
 
 export const searchData = (state) => state.search.data;
 export const searchStatus = (state) => state.search.status;
+export const searchTerm = (state) => state.search.search;
+export const searchImg = (state) => state.search.img;
+export const { setSearchTerm, setImageHome } = searchSlice.actions;
 export default searchSlice.reducer;

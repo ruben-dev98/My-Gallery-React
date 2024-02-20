@@ -1,39 +1,51 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { searchTerm } from "../search/searchSlice";
 
 export const favoritesSlice = createSlice({
     name: 'favorites',
-    initialState: [],
+    initialState: {
+        data: [],
+        img: {}
+    },
     reducers: {
         addFavorite: (state, action) => {
-            state.push(action.payload);
+            state.data.push(action.payload);
         },
         removeFavorite: (state, action) => {
-            return state.filter((fav) => fav.id !== action.payload.id);
+            state.data.splice(state.data.findIndex((fav) => fav.id === action.payload.id), 1);
+            //return state.filter((fav) => fav.id !== action.payload.id);
         },
-        getAllFavorites: (state, action) => {
-            state = action.payload;
-        },
+        /*getAllFavorites: (state, action) => {
+            return action.payload;
+        },*/
         editDescription: (state, action) => {
             const {id, desc} = action.payload;
-            const index = state.findIndex((el) => el.id === id);
-            state[index].description = desc;
+            const index = state.data.findIndex((el) => el.id === id);
+            state.data[index].description = desc;
         },
         sortFavorites: (state, action) => {
-            state = state.sort((a, b) => {
+            state.data = state.data.sort((a, b) => {
                 if(a[action.payload] < b[action.payload]) {
-                    return -1;
-                } else if(a[action.payload] > b[action.payload]) {
                     return 1;
+                } else if(a[action.payload] > b[action.payload]) {
+                    return -1;
                 }
                 return 0;
             });
         },
         filterFavorites: (state, actions) => {
 
+        },
+        setImageFavorite: (state, action) => {
+            state.img = action.payload;
         }
     }
 });
 
-export const {addFavorite, removeFavorite, getAllFavorites, editDescription, sortFavorites} = favoritesSlice.actions;
-export const favorites = (state) => state.favorites;
+export const {addFavorite, removeFavorite, /*getAllFavorites,*/ editDescription, sortFavorites, searchFavorite, setImageFavorite} = favoritesSlice.actions;
+export const favorites = (state) => state.favorites.data;
+export const favImg = (state) => state.favorites.img;
+export const filterFavorites = createSelector([favorites, searchTerm], (favs, search) => {
+    return favs.filter((img) => img.description.toLowerCase().includes(search.toLowerCase()))
+});
 export default favoritesSlice.reducer;
