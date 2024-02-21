@@ -31,3 +31,22 @@
 .navLinkDark {
     color: #000;
 }
+
+@media (max-width: 1200px) {
+    .navLink {
+        padding: .5em .5em;
+    }
+    
+    .title {
+        font-size: 1.9rem;
+    }
+
+    .menu {
+        font-size: 1.5rem;
+    }
+    
+    .navLinkDark {
+        color: #FFF;
+    }
+
+}

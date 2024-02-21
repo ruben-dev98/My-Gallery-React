@@ -10,6 +10,11 @@
     height: 40%;
 }
 
+.search__container {
+    position: relative;
+    height: 46%;
+}
+
 .title {
     font-weight: bold;
     color: #FFF;
@@ -47,13 +52,43 @@
     left: 20%;
     top: 1%;
     appearance: none;
-    background: transparent;
+    background-color: transparent;
     border: 0em;
     background-image: url('../../assets/icon/search.svg');
     background-repeat: no-repeat;
 }
 
-.search__container {
-    position: relative;
-    height: 46%;
+
+
+
+
+@media (max-width: 1200px) {
+    
+    .text {
+        width: 80%;
+        padding: 2em 2em 0em 2em;
+        display: block;
+        text-align: left;
+    }
+
+    .title {
+        font-size: 1.6rem;
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .input {
+        width: 81%;
+        margin: 3.6em auto;
+        padding: .8em 3.5em;
+    }
+
+    .icon {
+        position: absolute;
+        left: 10%;
+        top: 1%;
+    }
+    
 }
