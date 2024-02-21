@@ -1,6 +1,6 @@
 .modal {
-    width: 90%;
-    height: 90%;
+    width: 60%;
+    height: 60%;
 }
 
 .modal::backdrop {
@@ -10,12 +10,12 @@
 .label {
     font-weight: bold;
     font-size: 1.5rem;
-    height: 20%;
+    margin: 0em;
 }
 
 .text {
-    width: 100%;
-    height: 70%;
+    font-size: 1rem;
+    margin: 0em;
 }
 
 .close {
@@ -25,50 +25,111 @@
 }
 
 .button__close {
-
-}
-
-.modal__img {
-    width: 100%;
-    height: 60%;
+    background-color: transparent;
+    appearance: none;
+    border: 0em;
+    padding: 0em;
     cursor: pointer;
 }
 
+.button__close:focus-visible {
+    outline: 0.2em;
+}
+
+.img__close__icon {
+    width: 100%;
+    height: 100%;
+}
+
 .form {
-    width: 100%;
-    height: 30%;
+    display: grid;
+    grid-template-columns: 5% 30% 30% 30% 5%;
+    grid-template-areas:
+        '. . img . .'
+        '. label__desc label__desc label__desc .'
+        '.  desc desc desc .'
+        '. likes__label date__label size__label .'
+        '. likes__text date__text size__text .'
+        '.  . submit . .'
+    ;
+    row-gap: 2em;
 }
 
-.modal__desc {
-    width: 100%;
-    height: 40%;
+.label__desc {
+    grid-area: label__desc;
+    font-weight: bold;
+    font-size: 1.5rem;
 }
 
-.attr__container {
-    width: 100%;
-    height: 30%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 2em;
-    margin-top: 2em;
+.desc {
+    grid-area: desc;
+    height: 6em;
 }
 
-.modal__date {
-    width: 30%;
+.modal__img {
+    cursor: pointer;
+    grid-area: img;
 }
 
-.modal__likes {
-    width: 30%;
+.likes__label {
+    grid-area: likes__label;
 }
 
-.modal__size {
-    width: 30%;
+.likes__text {
+    grid-area: likes__text;
 }
 
-.modal__submit {
-    display: block;
-    margin: 0 auto;
-    width: 20%;
-    height: 20%;
+.date__label {
+    grid-area: date__label;
+    text-align: center;
+}
+
+.date__text {
+    grid-area: date__text;
+    text-align: center;
+}
+
+.size__label {
+    grid-area: size__label;
+    text-align: end;
+}
+
+.size__text {
+    grid-area: size__text;
+    text-align: end;
+}
+
+.button__submit {
+    grid-area: submit;
+}
+
+@media (max-width: 1200px) {
+    .form {
+        grid-template-columns: 5% 45% 45% 5%;
+        grid-template-areas:
+            '. img . .'
+            '. label__desc label__desc .'
+            '. desc desc .'
+            '. likes__label likes__text .'
+            '. date__label date__text .'
+            '. size__label size__text .'
+            '. . submit .'
+        ;
+    }
+
+    .label {
+        font-size: 1rem;
+    }
+
+    .size__label, .size__text {
+        text-align: left;
+    }
+
+    .date__label, .date__text {
+        text-align: left;
+    }
+
+    .desc {
+        height: 10em;
+    }
 }

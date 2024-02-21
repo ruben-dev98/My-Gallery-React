@@ -1,3 +1,4 @@
+import close_button from '../../assets/icon/close-button.svg'
 import { useContext, useEffect, useRef, useState } from 'react';
 import { editDescription, favImg } from '../../features/favorites/favoritesSlice';
 import styles from './ModalPanelComponent.module.css';
@@ -7,18 +8,23 @@ import { searchImg } from './../../features/search/searchSlice';
 import { Alert, Slide } from '@mui/material';
 
 export const ModalPanelComponent = () => {
+    const [desc, setDesc] = useState('');
+    const [isEdit, setIsEdit] = useState(false);
     const dispatch = useDispatch();
     const user = useContext(UserContext);
     const modal = useRef(null);
     const img = useSelector(!user ? searchImg : favImg);
-    const [desc, setDesc] = useState(img.description);
-    const [isEdit, setIsEdit] = useState(false);
     const styleAlert = {
         position: 'absolute',
         top: '9%',
         left: '34.5%',
         zIndex: '12'
     };
+
+    const styleAlertMobile = {
+        top: '10%',
+        left: '0%'
+    }
 
     useEffect(() => {
         modal.current = document.querySelector('#modal');
@@ -34,9 +40,9 @@ export const ModalPanelComponent = () => {
         setDesc(event.target.value);
     }
 
-    const handleOriginalImg = () => {
+    /*const handleOriginalImg = () => {
         window.open(img.urls.raw, '_blank');
-    }
+    }*/
 
     const handleEditSubmit = (event) => {
         event.preventDefault();
@@ -52,33 +58,21 @@ export const ModalPanelComponent = () => {
                 </Alert>
             </Slide>
             <div className={styles.close}>
-                <button onClick={handleExitModal} className={styles.button__close}>X</button>
+                <button onClick={handleExitModal} className={styles.button__close}><img className={styles.img__close__icon} src={close_button} /></button>
             </div>
             {img.description !== undefined &&
-                <>
-                    {/*<img onClick={handleOriginalImg} className={styles.modal__img} src={img.urls.raw + '&w=1500&dpr=2'} />*/}
-                    <form onSubmit={handleEditSubmit} className={styles.form}>
-                        <div className={styles.modal__desc}>
-                            <label className={styles.label}>Descripción</label>
-                            <textarea className={styles.text} name="desc" value={desc} onChange={handleDescValue} disabled={!user ? true : false}></textarea>
-                        </div>
-                        <div className={styles.attr__container}>
-                            <div className={styles.modal__date}>
-                                <p className={styles.label}>Fecha De Subida</p>
-                                <p className={styles.text}>{img.created_at}</p>
-                            </div>
-                            <div className={styles.modal__likes}>
-                                <p className={styles.label}>Likes</p>
-                                <p className={styles.text}>{img.likes}</p>
-                            </div>
-                            <div className={styles.modal__size}>
-                                <p className={styles.label}>Tamaño Original</p>
-                                <p className={styles.text}>{img.width} x {img.height}</p>
-                            </div>
-                        </div>
-                        {user && <button className={styles.modal__submit} type='submit'>Editar Descripción</button>}
-                    </form>
-                </>
+                <form onSubmit={handleEditSubmit} className={styles.form}>
+                    {/*<img onClick={handleOriginalImg} className={styles.modal__img} src={img.urls.thumb} />*/}
+                    <label className={styles.label__desc}>Descripción</label>
+                    <textarea className={styles.desc} name="desc" value={desc} onChange={handleDescValue} readOnly={!user ? true : false}></textarea>
+                    <label className={`${styles.label} ${styles.date__label}`}>Fecha De Subida</label>
+                    <p className={`${styles.text} ${styles.date__text}`}>{img.created_at.replaceAll(/[A-Z]/g, ' ')}</p>
+                    <label className={`${styles.label} ${styles.likes__label}`}>Likes</label>
+                    <p className={`${styles.text} ${styles.likes__text}`}>{img.likes}</p>
+                    <label className={`${styles.label} ${styles.size__label}`}>Tamaño Original</label>
+                    <p className={`${styles.text} ${styles.size__text}`}>{img.width} x {img.height}</p>
+                    {user &&<button className={styles.button__submit} type='submit'>Editar Descripción</button>}
+                </form>
             }
         </dialog>
     )

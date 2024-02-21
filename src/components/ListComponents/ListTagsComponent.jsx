@@ -24,15 +24,15 @@ export const ListTagsComponent = () => {
     return (
         <section className={styles.tags__container}>
             {isTabletOrMobile ? 
-                <FormControl sx={{ m: 1, minWidth: '40%', marginRight: 0, marginLeft: 'auto', textAlign: 'left'}}>
+                <FormControl sx={{ m: 1, minWidth: '100%', marginRight: 0, marginLeft: 'auto', textAlign: 'left'}}>
                 <InputLabel sx={{
                     color: '#FFF'
-                }} id="order-by-label">Buscar Por Etiquetas</InputLabel>
+                }} id="search-by-tag-label">Buscar Por Etiquetas</InputLabel>
                 <Select
                     sx={styleSelect}
-                    labelId="order-by-label"
-                    id="order-by"
-                    label="Ordenar Por"
+                    labelId="search-by-tag-label"
+                    id="search-by-tag"
+                    label="Buscar Por Etiquetas"
                     //value={filter}
                     //onChange={handleFilterChange}
                 >

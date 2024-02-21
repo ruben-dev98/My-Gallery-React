@@ -3,6 +3,7 @@ import styles from './ListOrderByComponent.module.css'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { sortFavorites } from '../../features/favorites/favoritesSlice';
+
 export const ListOrderByComponent = () => {
     const dispatch = useDispatch();
     const [filter, setFilter] = useState('');

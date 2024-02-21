@@ -1,6 +1,6 @@
 export class Img {
     
-    constructor(id, name, desc, width, height, src, likes, created_at, url_full, download, selector) {
+    constructor(id, name, desc, width, height, src, likes, created_at, url_full, download, thumb) {
         this.id = id;
         this.name = name;
         this.desc = desc;
@@ -11,15 +11,7 @@ export class Img {
         this.created_at = created_at;
         this.url_full = url_full;
         this.download = download;
-        this.selector = selector;
-    }
-
-    setFav() {
-        this.favorites = true;
-    }
-
-    unsetFav() {
-        this.favorites = false;
+        this.thumb = thumb;
     }
 
     toJson() {
@@ -33,7 +25,8 @@ export class Img {
             'alt_description': this.name,
             'urls': {
                 'raw': this.src,
-                'full': this.url_full
+                'full': this.url_full,
+                'thumb': this.thumb
             },
             'links': {
                 'download': this.download
