@@ -11,7 +11,7 @@
     text-decoration: none;
     cursor: pointer;
     margin: 0;
-    padding: 0.5em 1em;
+    padding: .5em .5em;
 }
 
 .navLinkActive {
@@ -20,33 +20,30 @@
 
 .title {
     text-decoration: inherit;
-    font-size: 3rem;
+    font-size: 1.9rem;
 }
 
 .menu {
     text-decoration: inherit;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
 }
 
-.navLinkDark {
-    color: #000;
-}
 
-@media (max-width: 1200px) {
+@media (min-width: 1200px) {
     .navLink {
-        padding: .5em .5em;
+        padding: 0.5em 1em;
     }
     
     .title {
-        font-size: 1.9rem;
+        font-size: 3rem;
     }
 
     .menu {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
     
     .navLinkDark {
-        color: #FFF;
+        color: #000;
     }
 
 }

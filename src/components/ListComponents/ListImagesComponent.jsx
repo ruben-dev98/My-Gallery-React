@@ -8,7 +8,7 @@ export const ListImageComponent = ({ listImages }) => {
         <section className={styles.listImgs}>
             {
                 listImages.map((img, index) => {
-                    // Object Img id, name, desc, width, height, src, likes, created_at, url_full, download, selector
+                    // Object Img id, name, desc, width, height, src, likes, created_at, url_full, download, thumb
                     const image = new Img(img.id, img.alt_description, img.description, img.width, img.height, 
                         img.urls.raw, img.likes, img.created_at, img.urls.full, 
                         img.links.download, img.urls.thumb);

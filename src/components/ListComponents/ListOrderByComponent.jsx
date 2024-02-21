@@ -1,18 +1,14 @@
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
+import { MenuItem} from '@mui/material'
 import styles from './ListOrderByComponent.module.css'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { sortFavorites } from '../../features/favorites/favoritesSlice';
-
+import { FormControlStyled, InputLabelStyled, SelectStyled } from '../StyledComponents/StyledComponents';
 export const ListOrderByComponent = () => {
     const dispatch = useDispatch();
     const [filter, setFilter] = useState('');
 
-    const styleSelect = {
-        backgroundColor: '#02242D',
-        color: '#FFF',
-        borderRadius: '1em'
-    }
+
 
     const handleFilterChange = (event) => {
         setFilter(event.target.value);
@@ -21,12 +17,9 @@ export const ListOrderByComponent = () => {
 
     return (
         <section className={styles.orderBy}>
-            <FormControl sx={{ m: 1, minWidth: '40%', marginRight: 0, marginLeft: 'auto', textAlign: 'left'}}>
-                <InputLabel sx={{
-                    color: '#FFF'
-                }} id="order-by-label">Ordenar Por</InputLabel>
-                <Select
-                    sx={styleSelect}
+            <FormControlStyled sx={{ m: 1 }}>
+                <InputLabelStyled id="order-by-label">Ordenar Por</InputLabelStyled>
+                <SelectStyled
                     labelId="order-by-label"
                     id="order-by"
                     label="Ordenar Por"
@@ -37,8 +30,8 @@ export const ListOrderByComponent = () => {
                     <MenuItem value='height'>Altura</MenuItem>
                     <MenuItem value='width'>Ancho</MenuItem>
                     <MenuItem value='created_at'>Fecha De Subida</MenuItem>
-                </Select>
-            </FormControl>
+                </SelectStyled>
+            </FormControlStyled>
         </section>
     )
 }

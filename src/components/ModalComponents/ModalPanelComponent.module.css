@@ -1,6 +1,6 @@
 .modal {
-    width: 60%;
-    height: 60%;
+    width: 80%;
+    height: 85%;
 }
 
 .modal::backdrop {
@@ -9,7 +9,7 @@
 
 .label {
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin: 0em;
 }
 
@@ -43,16 +43,18 @@
 
 .form {
     display: grid;
-    grid-template-columns: 5% 30% 30% 30% 5%;
+    grid-template-columns: 5% 45% 45% 5%;
     grid-template-areas:
-        '. . img . .'
-        '. label__desc label__desc label__desc .'
-        '.  desc desc desc .'
-        '. likes__label date__label size__label .'
-        '. likes__text date__text size__text .'
-        '.  . submit . .'
+        '. img . .'
+        '. label__desc label__desc .'
+        '. desc desc .'
+        '. likes__label likes__text .'
+        '. date__label date__text .'
+        '. size__label size__text .'
+        '. . submit .'
     ;
     row-gap: 2em;
+    
 }
 
 .label__desc {
@@ -63,7 +65,7 @@
 
 .desc {
     grid-area: desc;
-    height: 6em;
+    height: 15em;
 }
 
 .modal__img {
@@ -81,55 +83,62 @@
 
 .date__label {
     grid-area: date__label;
-    text-align: center;
+    text-align: left;
 }
 
 .date__text {
     grid-area: date__text;
-    text-align: center;
+    text-align: left;
 }
 
 .size__label {
     grid-area: size__label;
-    text-align: end;
+    text-align: left;
 }
 
 .size__text {
     grid-area: size__text;
-    text-align: end;
+    text-align: left;
 }
 
 .button__submit {
     grid-area: submit;
 }
 
-@media (max-width: 1200px) {
+
+@media (min-width: 1200px) {
+    .modal {
+        width: 60%;
+        height: 60%;
+    }
+
     .form {
-        grid-template-columns: 5% 45% 45% 5%;
+        grid-template-columns: 5% 30% 30% 30% 5%;
         grid-template-areas:
-            '. img . .'
-            '. label__desc label__desc .'
-            '. desc desc .'
-            '. likes__label likes__text .'
-            '. date__label date__text .'
-            '. size__label size__text .'
-            '. . submit .'
+            '. . img . .'
+            '. label__desc label__desc label__desc .'
+            '.  desc desc desc .'
+            '. likes__label date__label size__label .'
+            '. likes__text date__text size__text .'
+            '.  . submit . .'
         ;
     }
 
     .label {
-        font-size: 1rem;
+        font-size: 1.5rem;
     }
 
-    .size__label, .size__text {
-        text-align: left;
+    .size__label,
+    .size__text {
+        text-align: end;
     }
 
-    .date__label, .date__text {
-        text-align: left;
+    .date__label,
+    .date__text {
+        text-align: center;
     }
 
     .desc {
-        height: 10em;
+        height: 6em;
     }
 }

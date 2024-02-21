@@ -1,18 +1,13 @@
 import { useMediaQuery } from 'react-responsive';
 import styles from './ListTagsComponent.module.css'
-import { Chip, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { Chip, MenuItem } from '@mui/material';
+import { FormControlStyled, InputLabelStyled, SelectStyled } from '../StyledComponents/StyledComponents';
 
 export const ListTagsComponent = () => {
 
     const isTabletOrMobile = useMediaQuery({
         query: '(max-width: 1200px)'
     })
-
-    const styleSelect = {
-        backgroundColor: '#02242D',
-        color: '#FFF',
-        borderRadius: '1em'
-    }
 
     const styleTag = {
         backgroundColor: '#02242D',
@@ -24,12 +19,9 @@ export const ListTagsComponent = () => {
     return (
         <section className={styles.tags__container}>
             {isTabletOrMobile ? 
-                <FormControl sx={{ m: 1, minWidth: '100%', marginRight: 0, marginLeft: 'auto', textAlign: 'left'}}>
-                <InputLabel sx={{
-                    color: '#FFF'
-                }} id="search-by-tag-label">Buscar Por Etiquetas</InputLabel>
-                <Select
-                    sx={styleSelect}
+                <FormControlStyled sx={{ m: 1}}>
+                <InputLabelStyled id="search-by-tag-label">Buscar Por Etiquetas</InputLabelStyled>
+                <SelectStyled
                     labelId="search-by-tag-label"
                     id="search-by-tag"
                     label="Buscar Por Etiquetas"
@@ -40,8 +32,8 @@ export const ListTagsComponent = () => {
                     <MenuItem value='anime'>Anime</MenuItem>
                     <MenuItem value='nature'>Naturaleza</MenuItem>
                     <MenuItem value='sports'>Deportes</MenuItem>
-                </Select>
-            </FormControl>
+                </SelectStyled>
+            </FormControlStyled>
             :
             <>
                 <p className={styles.text}>Buscar Por Etiqueta</p>

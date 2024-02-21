@@ -5,7 +5,8 @@ import styles from './ModalPanelComponent.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserContext } from '../../app/UserContext';
 import { searchImg } from './../../features/search/searchSlice';
-import { Alert, Slide } from '@mui/material';
+import { Slide } from '@mui/material';
+import { AlertStyled, ButtonStyled } from '../StyledComponents/StyledComponents';
 
 export const ModalPanelComponent = () => {
     const [desc, setDesc] = useState('');
@@ -14,21 +15,20 @@ export const ModalPanelComponent = () => {
     const user = useContext(UserContext);
     const modal = useRef(null);
     const img = useSelector(!user ? searchImg : favImg);
-    const styleAlert = {
-        position: 'absolute',
-        top: '9%',
-        left: '34.5%',
-        zIndex: '12'
-    };
-
-    const styleAlertMobile = {
-        top: '10%',
-        left: '0%'
-    }
 
     useEffect(() => {
+
         modal.current = document.querySelector('#modal');
+        /*modal.current.addEventListener('click', () => {
+            setIsEdit(false);
+        });*/
         setDesc(img.description);
+
+        /*return () => {
+            modal.current.removeEventListener('click', () => {
+                setIsEdit(false);
+            });
+        }*/
     }, [img])
 
     const handleExitModal = (event) => {
@@ -52,10 +52,12 @@ export const ModalPanelComponent = () => {
 
     return (
         <dialog id='modal' className={styles.modal}>
-            <Slide direction="down" in={isEdit} timeout={1000} mountOnEnter unmountOnExit>
-                <Alert sx={styleAlert} variant='filled' severity="success">
+            <Slide direction="down" in={isEdit} onEntered={() => {
+                setTimeout(() => setIsEdit(false), 1000)
+                }} timeout={500} mountOnEnter unmountOnExit>
+                <AlertStyled variant='filled' severity="success">
                     La descripción de su imagen ha sido actualizada con éxito.
-                </Alert>
+                </AlertStyled>
             </Slide>
             <div className={styles.close}>
                 <button onClick={handleExitModal} className={styles.button__close}><img className={styles.img__close__icon} src={close_button} /></button>
@@ -71,7 +73,7 @@ export const ModalPanelComponent = () => {
                     <p className={`${styles.text} ${styles.likes__text}`}>{img.likes}</p>
                     <label className={`${styles.label} ${styles.size__label}`}>Tamaño Original</label>
                     <p className={`${styles.text} ${styles.size__text}`}>{img.width} x {img.height}</p>
-                    {user &&<button className={styles.button__submit} type='submit'>Editar Descripción</button>}
+                    {user && <ButtonStyled variant="contained" className={styles.button__submit} type='submit'>Editar Descripción</ButtonStyled>}
                 </form>
             }
         </dialog>
