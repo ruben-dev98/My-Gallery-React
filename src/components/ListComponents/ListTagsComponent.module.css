@@ -25,3 +25,10 @@
     margin: 0;
     height: 100%;
 }
+
+@media (max-width: 1200px) {
+    .tags__container {
+        padding: 0em 5em;
+    }
+    
+}

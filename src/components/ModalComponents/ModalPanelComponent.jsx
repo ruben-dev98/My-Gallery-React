@@ -56,7 +56,7 @@ export const ModalPanelComponent = () => {
             </div>
             {img.description !== undefined &&
                 <>
-                    <img onClick={handleOriginalImg} className={styles.modal__img} src={img.urls.raw + '&w=1500&dpr=2'} />
+                    {/*<img onClick={handleOriginalImg} className={styles.modal__img} src={img.urls.raw + '&w=1500&dpr=2'} />*/}
                     <form onSubmit={handleEditSubmit} className={styles.form}>
                         <div className={styles.modal__desc}>
                             <label className={styles.label}>Descripción</label>

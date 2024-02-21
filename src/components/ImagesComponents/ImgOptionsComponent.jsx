@@ -35,7 +35,8 @@ export const ImgOptionsComponent = ({ display, img }) => {
         modal.showModal();
     }
     const handleDownload = () => {
-        saveAs(img.url_full, img.id);
+        const name = img.name.replaceAll(' ', '-');
+        saveAs(img.url_full, name);
         //dispatch(download)
     }
 
@@ -46,7 +47,7 @@ export const ImgOptionsComponent = ({ display, img }) => {
                     <li>{!user ? <img onClick={handleAddFavorite} className={styles.icon} src={addHeart} /> : <img onClick={handleRemoveFavorite} className={styles.icon} src={removeHeart} />}</li>
                     {user && <li><img onClick={handleDownload} className={styles.icon} src={download} /></li>}
                     {user && <li><img onClick={handleShowModal} className={styles.icon} src={edit} /></li>}
-                    <li><img onClick={handleShowModal} className={styles.icon} src={moreInfo} /></li>
+                    {!user && <li><img onClick={handleShowModal} className={styles.icon} src={moreInfo} /></li>}
                 </ul>}
         </>
     )

@@ -5,3 +5,14 @@
     row-gap: 1em;
     padding: 0em 17em;
 }
+
+@media (max-width: 1200px) {
+    .listImgs {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0em 5em;
+    }
+    
+}

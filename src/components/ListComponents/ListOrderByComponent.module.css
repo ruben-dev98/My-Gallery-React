@@ -3,3 +3,10 @@
     padding: 0 17em;
     text-align: end;
 }
+
+@media (max-width: 1200px) {
+    .orderBy {
+        padding: 0em 5em;
+    }
+    
+}

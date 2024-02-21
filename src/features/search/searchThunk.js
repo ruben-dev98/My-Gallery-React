@@ -19,6 +19,6 @@ export const searchRandom = createAsyncThunk('search/loadRandomData', async () =
     return json;
 });
 
-export const downloadPhoto = createAsyncThunk('search/downloadPhoto', async () => {
+/*export const downloadPhoto = createAsyncThunk('search/downloadPhoto', async () => {
 
-});
+});*/

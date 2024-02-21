@@ -4,7 +4,7 @@ import { searchTerm } from "../search/searchSlice";
 export const favoritesSlice = createSlice({
     name: 'favorites',
     initialState: {
-        data: [],
+        data: /*localStorage.getItem('favs') ||*/ [],
         img: {}
     },
     reducers: {
