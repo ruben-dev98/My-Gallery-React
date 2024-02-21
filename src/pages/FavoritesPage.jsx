@@ -1,7 +1,7 @@
 import { HeaderComponent } from "../components/HeaderComponents/HeaderComponent";
 import { ListImageComponent } from "../components/ListComponents/ListImagesComponent";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { filterFavorites } from "../features/favorites/favoritesSlice";
 import { ListOrderByComponent } from "../components/ListComponents/ListOrderByComponent";
 import { ListTagsComponent } from "../components/ListComponents/ListTagsComponent";
@@ -10,11 +10,11 @@ import { useEffect } from "react";
 
 export const FavoritesPage = () => {
     const data = useSelector(filterFavorites);
-    const local = JSON.parse(localStorage.getItem('favs'));
-    const dispatch = useDispatch();
+    //const local = JSON.parse(localStorage.getItem('favs'));
     const title = 'Bienvenido a su galería personal';
     const subtitle = 'Aquí podrá encontrar todas aquellas fotos que haya guardado como favoritas';
-    const searchText = 'Search Description';
+    const searchText = 'Buscar Por Descripción';
+    console.log(data);
 
     useEffect(() => {
         localStorage.setItem('favs', JSON.stringify(data));
@@ -28,7 +28,7 @@ export const FavoritesPage = () => {
                     <ListTagsComponent />
                     <ListOrderByComponent />
                 </section>
-                <ListImageComponent listImages={data.length > 0 ? data : local} />
+                <ListImageComponent listImages={data} />
             </UserContext.Provider>
         </>
     )

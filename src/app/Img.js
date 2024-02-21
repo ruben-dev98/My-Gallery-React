@@ -1,6 +1,6 @@
 export class Img {
     
-    constructor(id, desc, width, height, src, likes, created_at, download, selector) {
+    constructor(id, desc, width, height, src, likes, created_at, url_full, download, selector) {
         this.id = id;
         this.desc = desc;
         this.width = width;
@@ -8,6 +8,7 @@ export class Img {
         this.src = src;
         this.likes = likes;
         this.created_at = created_at;
+        this.url_full = url_full;
         this.download = download;
         this.selector = selector;
     }
@@ -30,8 +31,12 @@ export class Img {
             'created_at': this.created_at,
             'urls': {
                 'raw': this.src,
+                'full': this.url_full
             },
-            'download': this.download
+            'links': {
+                'download': this.download
+            }
+            
         }
     }
 }

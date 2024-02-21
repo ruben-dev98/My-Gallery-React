@@ -4,6 +4,7 @@ import removeHeart from '../../assets/icon/heart-remove.svg';
 import download from '../../assets/icon/download.svg';
 import edit from '../../assets/icon/edit.svg';
 import moreInfo from '../../assets/icon/plus-circle.svg';
+import { saveAs } from 'file-saver';
 import { Img } from '../../app/Img';
 import { useContext } from 'react';
 import { UserContext } from '../../app/UserContext';
@@ -32,9 +33,9 @@ export const ImgOptionsComponent = ({ display, img }) => {
             dispatch(setImageFavorite(img.toJson()));
         }
         modal.showModal();
-        
     }
     const handleDownload = () => {
+        saveAs(img.url_full, img.id);
         //dispatch(download)
     }
 

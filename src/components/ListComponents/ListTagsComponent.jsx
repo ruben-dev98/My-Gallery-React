@@ -12,7 +12,7 @@ export const ListTagsComponent = () => {
 
     return (
         <section className={styles.tags__container}>
-            <p className={styles.text}>Search By Tag</p>
+            <p className={styles.text}>Buscar Por Etiqueta</p>
             <ul className={styles.tags}>
                 <Chip label="Animals" sx={styleTag}></Chip>
                 <Chip label="Anime" sx={styleTag}></Chip>

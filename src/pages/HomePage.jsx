@@ -12,7 +12,7 @@ export const HomePage = () => {
     const status = useSelector(searchStatus);
     const title = 'Increíble Galería de Imágenes Para Descargar';
     const subtitle = 'Contamos con más de 1 millón de imágenes gracias a Unplash';
-    const searchText = 'Search in library';
+    const searchText = 'Buscar en la galería';
     
     useEffect(() => {
         if(status === 'idle') {

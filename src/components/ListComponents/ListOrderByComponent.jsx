@@ -23,19 +23,19 @@ export const ListOrderByComponent = () => {
             <FormControl sx={{ m: 1, minWidth: '40%', marginRight: 0, marginLeft: 'auto', textAlign: 'left'}}>
                 <InputLabel sx={{
                     color: '#FFF'
-                }} id="order-by-label">Order By</InputLabel>
+                }} id="order-by-label">Ordenar Por</InputLabel>
                 <Select
                     sx={styleSelect}
                     labelId="order-by-label"
                     id="order-by"
-                    label="Order By"
+                    label="Ordenar Por"
                     value={filter}
                     onChange={handleFilterChange}
                 >
                     <MenuItem value='likes'>Likes</MenuItem>
-                    <MenuItem value='height'>Height</MenuItem>
-                    <MenuItem value='width'>Width</MenuItem>
-                    <MenuItem value='created_at'>Date Of Creation</MenuItem>
+                    <MenuItem value='height'>Altura</MenuItem>
+                    <MenuItem value='width'>Ancho</MenuItem>
+                    <MenuItem value='created_at'>Fecha De Subida</MenuItem>
                 </Select>
             </FormControl>
         </section>
