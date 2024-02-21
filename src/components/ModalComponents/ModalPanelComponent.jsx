@@ -54,7 +54,7 @@ export const ModalPanelComponent = () => {
         <dialog id='modal' className={styles.modal}>
             <Slide direction="down" in={isEdit} onEntered={() => {
                 setTimeout(() => setIsEdit(false), 1000)
-                }} timeout={500} mountOnEnter unmountOnExit>
+            }} timeout={500} mountOnEnter unmountOnExit>
                 <AlertStyled variant='filled' severity="success">
                     La descripción de su imagen ha sido actualizada con éxito.
                 </AlertStyled>

@@ -133,11 +133,6 @@
         text-align: end;
     }
 
-    .date__label,
-    .date__text {
-        text-align: center;
-    }
-
     .desc {
         height: 6em;
     }

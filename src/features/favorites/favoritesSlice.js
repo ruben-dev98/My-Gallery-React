@@ -1,13 +1,13 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { searchTerm } from "../search/searchSlice";
 
-const local = (localStorage.getItem('favs') !== null ? localStorage.getItem('favs') : []);
+const local = localStorage.getItem('favs') !== null ? JSON.parse(localStorage.getItem('favs')) : [];
 console.log(local);
 
 export const favoritesSlice = createSlice({
     name: 'favorites',
     initialState: {
-        data:  [],
+        data:  local,
         img: {}
     },
     reducers: {
