@@ -103,9 +103,9 @@ export const filterFavorites = createSelector([favorites, searchTerm], (favs, se
     return favs.filter((img) => img.description.toLowerCase().includes(search.toLowerCase()))
 });
 
-export const filterFavoritesTag = (state) => {
-    const favs = filterFavorites(state);
-    const search = searchTag(state);
+export const filterFavoritesTag = createSelector([filterFavorites, searchTag], (favs, search) => {
+    /*const favs = filterFavorites(state);
+    const search = searchTag(state);*/
     if(search === '') {
         return favs;
     }
@@ -116,5 +116,5 @@ export const filterFavoritesTag = (state) => {
             return true;
         }
     });
-};
+});
 export default favoritesSlice.reducer;
