@@ -23,11 +23,6 @@ export const ImgOptionsComponent = ({ display, img }) => {
         if (favs.find((el) => el.id === img.id) === undefined) {
             dispatch(getTagsPhoto(img.id));
             dispatch(addFavorite(img.toJson()));
-<<<<<<< HEAD
-            //localStorage.setItem('favs', favs);
-=======
-            
->>>>>>> 86294a12f449f5a4e1fe0df131221b534eb9e5ae
         }
     }
     const handleRemoveFavorite = () => {

@@ -2,8 +2,20 @@ import { useMediaQuery } from 'react-responsive';
 import styles from './ListTagsComponent.module.css'
 import { Chip, MenuItem } from '@mui/material';
 import { FormControlStyled, InputLabelStyled, SelectStyled } from '../StyledComponents/StyledComponents';
+import { useSelector } from 'react-redux';
+import { tags } from '../../features/favorites/favoritesSlice';
 
 export const ListTagsComponent = () => {
+    const tag = useSelector(tags);
+    const tagSorted = tag.sort((a, b) => {
+        if(a.count < b.count) {
+            return 1;
+        } else if(a.count > b.count) {
+            return -1;
+        }
+        return 0;
+    });
+    console.log(tagSorted);
 
     const isTabletOrMobile = useMediaQuery({
         query: '(max-width: 1200px)'
@@ -39,9 +51,6 @@ export const ListTagsComponent = () => {
                 <p className={styles.text}>Buscar Por Etiqueta</p>
                 <ul className={styles.tags}>
                     <Chip label="Animals" sx={styleTag}></Chip>
-                    <Chip label="Anime" sx={styleTag}></Chip>
-                    <Chip label="Nature" sx={styleTag}></Chip>
-                    <Chip label="Sports" sx={styleTag}></Chip>
                 </ul>
             </>
             }
