@@ -19,6 +19,12 @@ export const searchRandom = createAsyncThunk('search/loadRandomData', async () =
     return json;
 });
 
+export const getTagsPhoto = createAsyncThunk('favorites/getTagsPhoto', async (id) => {
+    const response = await fetch(`https://api.unsplash.com/photos/${id}?client_id=${ACCESS__KEY}`);
+    const json = await response.json();
+    return json;
+});
+
 /*export const downloadPhoto = createAsyncThunk('search/downloadPhoto', async () => {
 
 });*/

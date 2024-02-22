@@ -26,10 +26,10 @@ export const ListOrderByComponent = () => {
                     value={filter}
                     onChange={handleFilterChange}
                 >
-                    <MenuItem value='likes'>Likes</MenuItem>
-                    <MenuItem value='height'>Altura</MenuItem>
-                    <MenuItem value='width'>Ancho</MenuItem>
-                    <MenuItem value='created_at'>Fecha De Subida</MenuItem>
+                    <MenuItem value='likes'>LIKES</MenuItem>
+                    <MenuItem value='height'>ALTURA</MenuItem>
+                    <MenuItem value='width'>ANCHO</MenuItem>
+                    <MenuItem value='created_at'>FECHA DE SUBIDA</MenuItem>
                 </SelectStyled>
             </FormControlStyled>
         </section>

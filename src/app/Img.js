@@ -30,7 +30,8 @@ export class Img {
             },
             'links': {
                 'download': this.download
-            }
+            },
+            'tags': []
             
         }
     }

@@ -9,7 +9,7 @@ export const MainPage = () => {
     const favs = useSelector(favorites);
 
     useEffect(() => {
-        console.log(favs);
+        //console.log(favs);
         localStorage.setItem('favs', JSON.stringify(favs));
     }, [favs])
 

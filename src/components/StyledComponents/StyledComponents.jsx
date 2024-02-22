@@ -1,4 +1,4 @@
-import { Alert, Button, FormControl, InputLabel, Select } from "@mui/material";
+import { Alert, Button, Chip, FormControl, InputLabel, Select } from "@mui/material";
 import styled from "styled-components";
 
 export const SelectStyled = styled(Select)`
@@ -85,5 +85,21 @@ export const ButtonStyled = styled(Button)`
     &.MuiButtonBase-root:hover {
         background-color: #FFF;
         color: #02242D;
+        border: 0.1em solid #02242D;
     }
+`;
+
+export const ChipStyled = styled(Chip)`
+    &.MuiChip-root {
+        background-color: #02242D;
+        color: #FFF;
+        height: 75%;
+        width: 15%;
+    }
+    &.MuiChip-root:hover {
+        background-color: #FFF;
+        color: #02242D;
+        border: 0.1em solid #02242D;
+    }
+
 `;
