@@ -66,6 +66,7 @@
 .desc {
     grid-area: desc;
     height: 15em;
+    padding: 1em 1em;
 }
 
 .modal__img {
@@ -109,10 +110,11 @@
 @media (min-width: 1200px) {
     .modal {
         width: 60%;
-        height: 60%;
+        height: 55%;
     }
 
     .form {
+        height: 90%;
         grid-template-columns: 5% 30% 30% 30% 5%;
         grid-template-areas:
             '. . img . .'
@@ -135,5 +137,6 @@
 
     .desc {
         height: 6em;
+        
     }
 }

@@ -19,20 +19,21 @@ export const ModalPanelComponent = () => {
     useEffect(() => {
 
         modal.current = document.querySelector('#modal');
-        /*modal.current.addEventListener('click', () => {
-            setIsEdit(false);
-        });*/
+        modal.current.addEventListener('click', (event) => {
+            if (event.target == modal.current)
+                modal.current.close();
+        });
         setDesc(img.description);
 
-        /*return () => {
-            modal.current.removeEventListener('click', () => {
-                setIsEdit(false);
+        return () => {
+            modal.current.removeEventListener('click', (event) => {
+                if (event.target == modal.current)
+                modal.current.close();
             });
-        }*/
+        }
     }, [img])
 
     const handleExitModal = (event) => {
-        setIsEdit(false);
         modal.current.close();
     }
 

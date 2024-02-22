@@ -43,6 +43,11 @@ export const FormControlStyled = styled(FormControl)`
         color: #FFF;
     }
 
+    & .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+        border-color: #02242D;
+        border-width: 0em;
+    }
+
     & .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
         border-color: #02242D;
         border-width: 0em;
@@ -72,11 +77,13 @@ export const AlertStyled = styled(Alert)`
 `;
 
 export const ButtonStyled = styled(Button)`
-    &.MuiButtonBase-root {
-        background-color: #02242D;
-    }
-
     &.MuiButton-root {
         background-color: #02242D;
+        height: 5em;
+    }
+
+    &.MuiButtonBase-root:hover {
+        background-color: #FFF;
+        color: #02242D;
     }
 `;
