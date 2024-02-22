@@ -22,9 +22,6 @@ export const favoritesSlice = createSlice({
             state.data.splice(state.data.findIndex((fav) => fav.id === action.payload.id), 1);
             //return state.filter((fav) => fav.id !== action.payload.id);
         },
-        /*getAllFavorites: (state, action) => {
-            return action.payload;
-        },*/
         editDescription: (state, action) => {
             const {id, desc} = action.payload;
             const index = state.data.findIndex((el) => el.id === id);
@@ -40,9 +37,6 @@ export const favoritesSlice = createSlice({
                 return 0;
             });
         },
-        filterFavorites: (state, actions) => {
-
-        },
         setImageFavorite: (state, action) => {
             state.img = action.payload;
         }
@@ -53,7 +47,17 @@ export const favoritesSlice = createSlice({
         })
         .addCase(getTagsPhoto.fulfilled, (state, action) => {
             state.status = 'fulfilled';
-            state.tags.push(...action.payload);
+            const index = state.data.findIndex((el) => el.id === action.payload.id);
+            action.payload.tags.forEach((element) => {
+                if(element.type === 'search') {
+                    state.data[index].tags.push(element.title);
+                    if(state.tags.length > 0) {
+                        state.tags[element.title] = state.tags[element.title] + 1;
+                    } else {
+                        state.tags.push((element.title, 1));
+                    }
+                }
+            })
         })
         .addCase(getTagsPhoto.rejected, (state, action) => {
             state.status = 'rejected';
