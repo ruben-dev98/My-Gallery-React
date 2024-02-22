@@ -11,6 +11,7 @@ export const ListTagsComponent = () => {
     const dispatch = useDispatch();
     const tag = useSelector(tags);
     const [aTags, setATags] = useState([]);
+    const [filter, setFilter] = useState([]);
 
     useEffect(() => {
         if (tag.length > 5) {
@@ -45,7 +46,8 @@ export const ListTagsComponent = () => {
     }
 
     const handleOnChangeTagsFilter = (event) => {
-        dispatch(setSearchTag(event.target.value.toLowerCase()));
+        setFilter(event.target.value);
+        dispatch(setSearchTag(event.target.value));
     }
 
     
@@ -60,12 +62,12 @@ export const ListTagsComponent = () => {
                         labelId="search-by-tag-label"
                         id="search-by-tag"
                         label="Buscar Por Etiquetas"
-                        value={''}
+                        value={filter}
                         onChange={handleOnChangeTagsFilter}
                     >
                         {
                             aTags.map((tag, index) => {
-                                return <MenuItem key={index} value={tag.tag}>{tag.tag}</MenuItem>
+                                return <MenuItem key={index} value={tag.tag}>{tag.tag.toUpperCase()}</MenuItem>
                             })
                         }
                     </SelectStyled>
