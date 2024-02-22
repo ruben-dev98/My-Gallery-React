@@ -1,7 +1,6 @@
 import styles from './ImageComponent.module.css';
 import { useState } from "react";
 import { ImgOptionsComponent } from "./ImgOptionsComponent";
-import Zoom from 'react-medium-image-zoom'
 
 
 
