@@ -1,6 +1,7 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { searchTerm } from "../search/searchSlice";
+import { searchTag, searchTerm } from "../search/searchSlice";
 import { getTagsPhoto } from "../search/searchThunk";
+import { useSelector } from "react-redux";
 
 const local = localStorage.getItem('favs') !== null ? JSON.parse(localStorage.getItem('favs')) : [];
 
@@ -101,12 +102,19 @@ export const favImg = (state) => state.favorites.img;
 export const filterFavorites = createSelector([favorites, searchTerm], (favs, search) => {
     return favs.filter((img) => img.description.toLowerCase().includes(search.toLowerCase()))
 });
-export const filterFavoritesTag = createSelector([filterFavorites, searchTag], (favs, search) => {
+
+export const filterFavoritesTag = (state) => {
+    const favs = filterFavorites(state);
+    const search = searchTag(state);
+    if(search === '') {
+        return favs;
+    }
+
     return favs.filter((fav) =>{
         const index = fav.tags.findIndex((tag) => tag === search);
         if(index !== -1) {
             return true;
         }
     });
-})
+};
 export default favoritesSlice.reducer;
