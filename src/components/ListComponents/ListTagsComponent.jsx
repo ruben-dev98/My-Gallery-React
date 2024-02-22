@@ -7,6 +7,17 @@ import { tags } from '../../features/favorites/favoritesSlice';
 import { useEffect, useState } from 'react';
 import { setSearchTag } from '../../features/search/searchSlice';
 
+const setterTags = (nTags, setState, aTags) => {
+    setState(aTags.toSorted(((a, b) => {
+        if (a['count'] < b['count']) {
+            return 1;
+        } else if (a['count'] > b['count']) {
+            return -1;
+        }
+        return 0;
+    })).splice(0, nTags));
+} 
+
 export const ListTagsComponent = () => {
     const dispatch = useDispatch();
     const tag = useSelector(tags);
@@ -15,23 +26,9 @@ export const ListTagsComponent = () => {
 
     useEffect(() => {
         if (tag.length > 5) {
-            setATags(tag.toSorted(((a, b) => {
-                if (a['count'] < b['count']) {
-                    return 1;
-                } else if (a['count'] > b['count']) {
-                    return -1;
-                }
-                return 0;
-            })).splice(0, 5));
+            setterTags(5, setATags, tag);
         } else {
-            setATags(tag.toSorted(((a, b) => {
-                if (a['count'] < b['count']) {
-                    return 1;
-                } else if (a['count'] > b['count']) {
-                    return -1;
-                }
-                return 0;
-            })).splice(0, tag.length - 1));
+            setterTags(tag.length, setATags, tag);
         }
     }, [tag]);
 
@@ -49,8 +46,6 @@ export const ListTagsComponent = () => {
         setFilter(event.target.value);
         dispatch(setSearchTag(event.target.value));
     }
-
-    
 
     return (
         aTags.length > 0 &&
