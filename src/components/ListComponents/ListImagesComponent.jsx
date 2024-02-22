@@ -13,7 +13,7 @@ export const ListImageComponent = ({ listImages }) => {
                         img.urls.raw, img.likes, img.created_at, img.urls.full, 
                         img.links.download_location, img.urls.thumb);
                     return (
-                        <ImageComponent img={image} key={image.id} />
+                        <ImageComponent img={image} key={image.id}/>
                     )
                 })
             }

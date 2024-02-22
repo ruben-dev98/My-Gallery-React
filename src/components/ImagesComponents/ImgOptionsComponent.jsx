@@ -6,12 +6,12 @@ import edit from '../../assets/icon/edit.svg';
 import moreInfo from '../../assets/icon/plus-circle.svg';
 import { saveAs } from 'file-saver';
 import { Img } from '../../app/Img';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../app/UserContext';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFavorite, favorites, removeFavorite, setImageFavorite } from '../../features/favorites/favoritesSlice';
 import { setImageHome } from '../../features/search/searchSlice';
-import { downloadPhoto, getTagsPhoto } from '../../features/search/searchThunk';
+import { getTagsPhoto } from '../../features/search/searchThunk';
 
 export const ImgOptionsComponent = ({ display, img }) => {
     const user = useContext(UserContext);

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { searchByQuery, loadData, searchRandom, downloadPhoto } from "./searchThunk";
+import { searchByQuery, loadData, searchRandom } from "./searchThunk";
 
 export const searchSlice = createSlice({
     name: 'search',
