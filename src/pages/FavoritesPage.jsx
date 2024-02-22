@@ -14,11 +14,7 @@ export const FavoritesPage = () => {
     const title = 'Bienvenido a su galería personal';
     const subtitle = 'Aquí podrá encontrar todas aquellas fotos que haya guardado como favoritas';
     const searchText = 'Buscar Por Descripción';
-
-    useEffect(() => {
-        localStorage.setItem('favs', JSON.stringify(data));
-    }, [data])
-
+    
     return (
         <>
             <UserContext.Provider value={true}>

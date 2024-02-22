@@ -6,7 +6,7 @@ import edit from '../../assets/icon/edit.svg';
 import moreInfo from '../../assets/icon/plus-circle.svg';
 import { saveAs } from 'file-saver';
 import { Img } from '../../app/Img';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { UserContext } from '../../app/UserContext';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFavorite, favorites, removeFavorite, setImageFavorite } from '../../features/favorites/favoritesSlice';
@@ -23,7 +23,11 @@ export const ImgOptionsComponent = ({ display, img }) => {
         if (favs.find((el) => el.id === img.id) === undefined) {
             dispatch(getTagsPhoto(img.id));
             dispatch(addFavorite(img.toJson()));
+<<<<<<< HEAD
             //localStorage.setItem('favs', favs);
+=======
+            
+>>>>>>> 86294a12f449f5a4e1fe0df131221b534eb9e5ae
         }
     }
     const handleRemoveFavorite = () => {
