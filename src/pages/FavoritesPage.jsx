@@ -1,12 +1,10 @@
 import { HeaderComponent } from "../components/HeaderComponents/HeaderComponent";
 import { ListImageComponent } from "../components/ListComponents/ListImagesComponent";
-
 import { useSelector } from "react-redux";
 import { filterFavorites } from "../features/favorites/favoritesSlice";
 import { ListOrderByComponent } from "../components/ListComponents/ListOrderByComponent";
 import { ListTagsComponent } from "../components/ListComponents/ListTagsComponent";
 import { UserContext } from "../app/UserContext";
-import { useEffect } from "react";
 
 export const FavoritesPage = () => {
     const data = useSelector(filterFavorites);

@@ -6,6 +6,7 @@ export const searchSlice = createSlice({
     initialState: {
         data: [],
         search: '',
+        tag: '',
         img: {},
         total: 0,
         pages: 0,
@@ -18,6 +19,9 @@ export const searchSlice = createSlice({
         },
         setImageHome: (state, action) => {
             state.img = action.payload;
+        },
+        setSearchTag: (state, action) => {
+            state.tag = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -64,6 +68,8 @@ export const searchSlice = createSlice({
 export const searchData = (state) => state.search.data;
 export const searchStatus = (state) => state.search.status;
 export const searchTerm = (state) => state.search.search;
+export const searchTag = (state) => state.search.tag;
 export const searchImg = (state) => state.search.img;
-export const { setSearchTerm, setImageHome } = searchSlice.actions;
+
+export const { setSearchTerm, setImageHome, setSearchTag } = searchSlice.actions;
 export default searchSlice.reducer;

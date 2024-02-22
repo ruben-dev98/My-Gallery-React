@@ -3,14 +3,31 @@ import { searchTerm } from "../search/searchSlice";
 import { getTagsPhoto } from "../search/searchThunk";
 
 const local = localStorage.getItem('favs') !== null ? JSON.parse(localStorage.getItem('favs')) : [];
-//const tags;
+
+const initialTags = [];
+
+if (local.length > 0) {
+    local.forEach((img) => {
+        img.tags.forEach((tag) => {
+            const indexTag = initialTags.findIndex((tag_fav) => tag_fav.tag === tag);
+            if (indexTag !== -1) {
+                initialTags[indexTag].count += 1;
+            } else {
+                initialTags.push({ tag: tag, count: 1 });
+            }
+        })
+    });
+}
+
+
+//const initialTags = tag__img || [];
 
 export const favoritesSlice = createSlice({
     name: 'favorites',
     initialState: {
         data: local,
         img: {},
-        tags: [],
+        tags: initialTags,
         status: 'idle',
         error: null
     },
@@ -22,9 +39,8 @@ export const favoritesSlice = createSlice({
             const index = state.data.findIndex((fav) => fav.id === action.payload.id);
             state.data[index].tags.forEach((tag) => {
                 const indexTag = state.tags.findIndex((tag_fav) => tag_fav.tag === tag);
-                console.log(indexTag);
                 if (indexTag !== -1) {
-                    const nTags = state.tags[indexTag].count - 1; 
+                    const nTags = state.tags[indexTag].count - 1;
                     if (nTags !== 0) {
                         state.tags[indexTag].count = nTags;
                     } else {
@@ -85,4 +101,12 @@ export const favImg = (state) => state.favorites.img;
 export const filterFavorites = createSelector([favorites, searchTerm], (favs, search) => {
     return favs.filter((img) => img.description.toLowerCase().includes(search.toLowerCase()))
 });
+export const filterFavoritesTag = createSelector([filterFavorites, searchTag], (favs, search) => {
+    return favs.filter((fav) =>{
+        const index = fav.tags.findIndex((tag) => tag === search);
+        if(index !== -1) {
+            return true;
+        }
+    });
+})
 export default favoritesSlice.reducer;
