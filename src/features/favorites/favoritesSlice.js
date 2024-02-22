@@ -111,7 +111,7 @@ export const filterFavoritesTag = (state) => {
     }
 
     return favs.filter((fav) =>{
-        const index = fav.tags.findIndex((tag) => tag === search);
+        const index = fav.tags.findIndex((tag) => tag.toLowerCase() === search.toLowerCase());
         if(index !== -1) {
             return true;
         }
