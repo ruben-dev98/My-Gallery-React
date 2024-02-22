@@ -8,8 +8,9 @@ export const loadData = createAsyncThunk('search/loadAllData', async () => {
 });
 
 export const searchByQuery = createAsyncThunk('search/loadDataByQuery', async (query) => {
-    const response = await fetch(`https://api.unsplash.com/search/photos?query=${query}&client_id=${ACCESS__KEY}&per_page=20`);
+    const response = await fetch(`https://api.unsplash.com/search/photos?query=${query}&client_id=${ACCESS__KEY}&per_page=100`);
     const json = await response.json();
+    json['query'] = query;
     return json;
 });
 
@@ -24,6 +25,13 @@ export const getTagsPhoto = createAsyncThunk('favorites/getTagsPhoto', async (id
     const json = await response.json();
     return json;
 });
+
+
+export const getPhotosPage = createAsyncThunk('search/getPhotosPage', async({search, page}) => {
+    const response = await fetch(`https://api.unsplash.com/search/photos?query=${search}&page=${page}&client_id=${ACCESS__KEY}&per_page=20`);
+    const json = await response.json();
+    return json;
+})
 
 /*export const downloadPhoto = createAsyncThunk('search/downloadPhoto', async (url__download) => {
     const response = await fetch(`${url__download}&client_id=${ACCESS__KEY}`);

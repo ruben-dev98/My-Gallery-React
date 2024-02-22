@@ -23,7 +23,6 @@ export const SearchBarComponent = ({title, subtitle, searchText}) => {
         } else  {
             dispatch(searchByQuery(event.target.search.value));
         }
-        
     };
 
     const handleSearchFavoriteSubmit = (event) => {
