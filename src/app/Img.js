@@ -29,7 +29,7 @@ export class Img {
                 'thumb': this.thumb
             },
             'links': {
-                'download': this.download
+                'download_location': this.download
             },
             'tags': []
             

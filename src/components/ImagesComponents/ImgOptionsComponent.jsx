@@ -11,7 +11,7 @@ import { UserContext } from '../../app/UserContext';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFavorite, favorites, removeFavorite, setImageFavorite } from '../../features/favorites/favoritesSlice';
 import { setImageHome } from '../../features/search/searchSlice';
-import { getTagsPhoto } from '../../features/search/searchThunk';
+import { downloadPhoto, getTagsPhoto } from '../../features/search/searchThunk';
 
 export const ImgOptionsComponent = ({ display, img }) => {
     const user = useContext(UserContext);
@@ -29,7 +29,7 @@ export const ImgOptionsComponent = ({ display, img }) => {
         dispatch(removeFavorite(img.toJson()));
     }
     const handleShowModal = () => {
-        if(!user) {
+        if (!user) {
             dispatch(setImageHome(img.toJson()));
         } else {
             dispatch(setImageFavorite(img.toJson()));
@@ -39,7 +39,8 @@ export const ImgOptionsComponent = ({ display, img }) => {
     const handleDownload = () => {
         const name = img.name.replaceAll(' ', '-');
         saveAs(img.url_full, name);
-        //dispatch(download)
+        console.log(img.download);
+        //dispatch(downloadPhoto(img.download));
     }
 
     return (

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { searchByQuery, loadData, searchRandom } from "./searchThunk";
+import { searchByQuery, loadData, searchRandom, downloadPhoto } from "./searchThunk";
 
 export const searchSlice = createSlice({
     name: 'search',
@@ -62,6 +62,16 @@ export const searchSlice = createSlice({
             state.status = 'rejected';
             state.error = action.error.message;
         })
+        /*.addCase(downloadPhoto.pending, (state, action) => {
+            state.status = 'pending';
+        })
+        .addCase(downloadPhoto.fulfilled, (state, action) => {
+            state.status = 'fulfilled';
+        }) 
+        .addCase(downloadPhoto.rejected, (state, action) => {
+            state.status = 'rejected';
+            state.error = action.error.message;
+        })*/
     }
 });
 

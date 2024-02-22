@@ -25,6 +25,8 @@ export const getTagsPhoto = createAsyncThunk('favorites/getTagsPhoto', async (id
     return json;
 });
 
-/*export const downloadPhoto = createAsyncThunk('search/downloadPhoto', async () => {
-
+/*export const downloadPhoto = createAsyncThunk('search/downloadPhoto', async (url__download) => {
+    const response = await fetch(`${url__download}&client_id=${ACCESS__KEY}`);
+    const json = await response.json();
+    return json;
 });*/
