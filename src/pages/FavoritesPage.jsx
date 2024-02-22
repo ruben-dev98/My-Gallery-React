@@ -24,6 +24,7 @@ export const FavoritesPage = () => {
             <UserContext.Provider value={true}>
                 <HeaderComponent title={title} subtitle={subtitle} searchText={searchText} />
                 <section>
+                    <ListTagsComponent/>
                     <ListOrderByComponent />
                 </section>
                 <ListImageComponent listImages={data} />

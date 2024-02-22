@@ -1,5 +1,6 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { searchTerm } from "../search/searchSlice";
+import { getTagsPhoto } from "../search/searchThunk";
 
 const local = localStorage.getItem('favs') !== null ? JSON.parse(localStorage.getItem('favs')) : [];
 console.log(local);
@@ -8,7 +9,10 @@ export const favoritesSlice = createSlice({
     name: 'favorites',
     initialState: {
         data:  local,
-        img: {}
+        img: {},
+        tags: [],
+        status: 'idle',
+        error: null
     },
     reducers: {
         addFavorite: (state, action) => {
@@ -42,11 +46,25 @@ export const favoritesSlice = createSlice({
         setImageFavorite: (state, action) => {
             state.img = action.payload;
         }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(getTagsPhoto.pending, (state, action) => {
+            state.status = 'pending';
+        })
+        .addCase(getTagsPhoto.fulfilled, (state, action) => {
+            state.status = 'fulfilled';
+            state.tags.push(...action.payload);
+        })
+        .addCase(getTagsPhoto.rejected, (state, action) => {
+            state.status = 'rejected';
+            state.error = action.error.message;
+        })
     }
 });
 
 export const {addFavorite, removeFavorite, /*getAllFavorites,*/ editDescription, sortFavorites, searchFavorite, setImageFavorite} = favoritesSlice.actions;
 export const favorites = (state) => state.favorites.data;
+export const tags = (state) => state.favorites.tags;
 export const favImg = (state) => state.favorites.img;
 export const filterFavorites = createSelector([favorites, searchTerm], (favs, search) => {
     return favs.filter((img) => img.description.toLowerCase().includes(search.toLowerCase()))
