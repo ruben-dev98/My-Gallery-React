@@ -38,7 +38,6 @@ export const ListTagsComponent = () => {
     })
 
     const handleOnClickTagsFilter = (event) => {
-        console.log(event.target.innerText);
         dispatch(setSearchTag(event.target.innerText.toLowerCase()));
     }
 

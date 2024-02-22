@@ -103,18 +103,18 @@ export const filterFavorites = createSelector([favorites, searchTerm], (favs, se
     return favs.filter((img) => img.description.toLowerCase().includes(search.toLowerCase()))
 });
 
-export const filterFavoritesTag = (state) => {
-    const favs = filterFavorites(state);
-    const search = searchTag(state);
+export const filterFavoritesTag = createSelector([filterFavorites, searchTag], (favs, search) => {
+    /*const favs = filterFavorites(state);
+    const search = searchTag(state);*/
     if(search === '') {
         return favs;
     }
 
     return favs.filter((fav) =>{
-        const index = fav.tags.findIndex((tag) => tag === search);
+        const index = fav.tags.findIndex((tag) => tag.toLowerCase() === search.toLowerCase());
         if(index !== -1) {
             return true;
         }
     });
-};
+});
 export default favoritesSlice.reducer;
