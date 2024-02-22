@@ -43,7 +43,7 @@ export const SearchBarComponent = ({title, subtitle, searchText}) => {
             </section>
             <form onSubmit={!user ? handleSearchSubmit : handleSearchFavoriteSubmit} className={styles.search__container}>
                 <button className={styles.icon} type='submit'></button>
-                <input onChange={user && handleSearchFavoritesChange} autoComplete='off' className={styles.input} value={!user ? undefined : search} name='search' type="search" placeholder={searchText}/> 
+                <input onChange={user ? handleSearchFavoritesChange : undefined} autoComplete='off' className={styles.input} value={!user ? undefined : search} name='search' type="search" placeholder={searchText}/> 
             </form>
         </search>
     );
