@@ -2,7 +2,7 @@ import styles from './ListImagesComponent.module.css';
 import { ImageComponent } from "../ImagesComponents/ImageComponent";
 import { Img } from "../../app/Img";
 import { ModalPanelComponent } from '../ModalComponents/ModalPanelComponent';
-import { useContext, useEffect, useReducer, useRef, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../app/UserContext';
 import { Slide } from '@mui/material';
 import { AlertStyled } from '../StyledComponents/StyledComponents';
