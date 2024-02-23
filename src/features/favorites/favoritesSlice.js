@@ -144,25 +144,10 @@ export const filterFavoritesPage = createSelector([filterFavoritesTag, items_per
         return favs;
     }
 
-    const firstIndex = nPage === pages ? 0 : nPage*items;
-    const lastIndex = nPage === 1 ? ((pages - 1)*items) : (nPage-1)*items;
+    const firstIndex = nPage === 1 ? 0 : (nPage - 1) * items;
+    const lastIndex = nPage === 1 ? items : nPage * items;
 
-    console.log(firstIndex);
-
-    console.log(lastIndex);
-    
-    const img__favs = favs.toSpliced(firstIndex, lastIndex);
-
-    img__favs.forEach((element) => {
-        const index = favs.findIndex((fav) => fav.id === element.id);
-        if(index !== -1) {
-            console.log(index + '        ' + element.id);
-        }
-    })
-
-    console.log(img__favs);
-
-    return img__favs;
+    return favs.filter((element, index) => index >= firstIndex && index < lastIndex);
     
 });
 
