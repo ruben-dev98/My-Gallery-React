@@ -6,15 +6,12 @@ const local = localStorage.getItem('favs') !== null ? JSON.parse(localStorage.ge
 
 const initialTags = [];
 
-const initialPages = local.length > 0 ? () => {
-    const nPages = local.length/20;
-    if(local.length%20 === 0) {
-        return nPages;
-    } else {
-        return nPages + 1;
-    }
-}
-: 1;
+const initialPages = local.length > 0 ?
+    local.length%20 === 0 ? 
+        parseInt((local.length/20).toFixed(0))
+    :
+        parseInt((local.length/20).toFixed(0))
+: parseInt(1);
 
 if (local.length > 0) {
     local.forEach((img) => {
@@ -37,12 +34,16 @@ export const favoritesSlice = createSlice({
         img: {},
         items_per_page: 20,
         pages: initialPages,
+        nPage: 1,
         status: 'idle',
         error: null
     },
     reducers: {
         addFavorite: (state, action) => {
             state.data.push(action.payload);
+            const total_pages = parseInt((state.data.length/state.items_per_page).toFixed(0));
+            if(state.data.length%state.items_per_page === 0) state.pages = total_pages
+            else state.pages = total_pages + 1;
         },
         removeFavorite: (state, action) => {
             const index = state.data.findIndex((fav) => fav.id === action.payload.id);
@@ -57,7 +58,11 @@ export const favoritesSlice = createSlice({
                     }
                 }
             });
+
             state.data.splice(index, 1);
+            const total_pages = parseInt((state.data.length/state.items_per_page).toFixed(0));
+            if(state.data.length%state.items_per_page === 0) state.pages = total_pages
+            else state.pages = total_pages + 1;
             //return state.filter((fav) => fav.id !== action.payload.id);
         },
         editDescription: (state, action) => {
@@ -77,6 +82,12 @@ export const favoritesSlice = createSlice({
         },
         setImageFavorite: (state, action) => {
             state.img = action.payload;
+        },
+        setNumPage: (state, action) => {
+            state.nPage = action.payload;
+        },
+        setTotalPages: (state, action) => {
+            state.pages = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -103,10 +114,14 @@ export const favoritesSlice = createSlice({
     }
 });
 
-export const { addFavorite, removeFavorite, /*getAllFavorites,*/ editDescription, sortFavorites, searchFavorite, setImageFavorite } = favoritesSlice.actions;
+export const { addFavorite, removeFavorite, /*getAllFavorites,*/ editDescription, sortFavorites, searchFavorite, setImageFavorite, setNumPage, setTotalPages } = favoritesSlice.actions;
 export const favorites = (state) => state.favorites.data;
 export const tags = (state) => state.favorites.tags;
 export const favImg = (state) => state.favorites.img;
+export const items_per_page = (state) => state.favorites.items_per_page;
+export const total_pages = (state) => state.favorites.pages;
+export const nPage = (state) => state.favorites.nPage;
+
 export const filterFavorites = createSelector([favorites, searchTerm], (favs, search) => {
     return favs.filter((img) => img.description.toLowerCase().includes(search.toLowerCase()))
 });
@@ -124,5 +139,32 @@ export const filterFavoritesTag = createSelector([filterFavorites, searchTag], (
     });
 });
 
-export const items_per_page = (state) => state.favorites.items_per_page;
+export const filterFavoritesPage = createSelector([filterFavoritesTag, items_per_page, total_pages, nPage], (favs, items, pages, nPage) => {
+    if(pages === 1) {
+        return favs;
+    }
+
+    const firstIndex = nPage === pages ? 0 : nPage*items;
+    const lastIndex = nPage === 1 ? ((pages - 1)*items) : (nPage-1)*items;
+
+    console.log(firstIndex);
+
+    console.log(lastIndex);
+    
+    const img__favs = favs.toSpliced(firstIndex, lastIndex);
+
+    img__favs.forEach((element) => {
+        const index = favs.findIndex((fav) => fav.id === element.id);
+        if(index !== -1) {
+            console.log(index + '        ' + element.id);
+        }
+    })
+
+    console.log(img__favs);
+
+    return img__favs;
+    
+});
+
+
 export default favoritesSlice.reducer;
