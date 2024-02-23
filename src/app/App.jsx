@@ -1,4 +1,4 @@
-import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements, Link, NavLink } from 'react-router-dom';
+import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements, Link, NavLink, Routes, MemoryRouter } from 'react-router-dom';
 import { HomePage} from '../pages/HomePage';
 import { FavoritesPage } from '../pages/FavoritesPage';
 import { MainPage } from '../pages/MainPage';

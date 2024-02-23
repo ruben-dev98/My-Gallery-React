@@ -4,7 +4,7 @@ import styles from './ListTagsComponent.module.css'
 import { MenuItem } from '@mui/material';
 import { ButtonTagStyled, ChipStyled, FormControlStyled, InputLabelStyled, SelectStyled } from '../StyledComponents/StyledComponents';
 import { useDispatch, useSelector } from 'react-redux';
-import { tags } from '../../features/favorites/favoritesSlice';
+import { setTotalPages, tags } from '../../features/favorites/favoritesSlice';
 import { useEffect, useState } from 'react';
 import { searchTag, setSearchTag } from '../../features/search/searchSlice';
 
@@ -43,11 +43,13 @@ export const ListTagsComponent = () => {
     const handleOnClickTagsFilter = (event) => {
         setFilter(event.target.innerText.toLowerCase());
         dispatch(setSearchTag(event.target.innerText.toLowerCase()));
+        dispatch(setTotalPages());
     }
 
     const handleOnChangeTagsFilter = (event) => {
         setFilter(event.target.value);
         dispatch(setSearchTag(event.target.value));
+        dispatch(setTotalPages());
     }
 
     const handleClearFilterTags = (event) => {

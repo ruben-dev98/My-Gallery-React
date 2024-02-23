@@ -1,4 +1,4 @@
-import { Alert, Button, Chip, FormControl, InputLabel, Select } from "@mui/material";
+import { Alert, Button, Chip, FormControl, InputLabel, Pagination, Select } from "@mui/material";
 import styled from "styled-components";
 
 export const SelectStyled = styled(Select)`
@@ -105,6 +105,37 @@ export const ChipStyled = styled(Chip)`
         border: 0.1em solid #02242D;
     }
 
+    &.MuiChip-root:focus {
+        background-color: #FFF;
+        color: #02242D;
+        border: 0.1em solid #02242D;
+    }
+
+`;
+
+export const PaginationStyled = styled(Pagination)`
+    &.MuiPagination-root {
+        display: flex;
+        justify-content: center;
+        margin: 1em 0em;
+    }
+    
+    & .MuiPaginationItem-root.Mui-selected {
+        background-color: #02242D;
+        color: #FFF;
+    }
+
+    & .MuiPaginationItem-root.Mui-selected:hover {
+        background-color: #FFF;
+        color: #02242D;
+        border: 0.1em solid #02242D;
+    }
+
+    & .MuiPaginationItem-root:hover {
+        background-color: #FFF;
+        color: #02242D;
+        border: 0.1em solid #02242D;
+    }
 `;
 
 export const ButtonTagStyled = styled(ButtonStyled)`
