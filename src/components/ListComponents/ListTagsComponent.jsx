@@ -1,11 +1,13 @@
+import trash from '../../assets/icon/trashcan.svg';
 import { useMediaQuery } from 'react-responsive';
 import styles from './ListTagsComponent.module.css'
 import { MenuItem } from '@mui/material';
-import { ChipStyled, FormControlStyled, InputLabelStyled, SelectStyled } from '../StyledComponents/StyledComponents';
+import { ButtonTagStyled, ChipStyled, FormControlStyled, InputLabelStyled, SelectStyled } from '../StyledComponents/StyledComponents';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTotalPages, tags } from '../../features/favorites/favoritesSlice';
 import { useEffect, useState } from 'react';
-import { setSearchTag } from '../../features/search/searchSlice';
+import { searchTag, setSearchTag } from '../../features/search/searchSlice';
+
 
 const setterTags = (nTags, setState, aTags) => {
     setState(aTags.toSorted(((a, b) => {
@@ -21,8 +23,9 @@ const setterTags = (nTags, setState, aTags) => {
 export const ListTagsComponent = () => {
     const dispatch = useDispatch();
     const tag = useSelector(tags);
+    const queryTag = useSelector(searchTag);
     const [aTags, setATags] = useState([]);
-    const [filter, setFilter] = useState([]);
+    const [filter, setFilter] = useState(queryTag);
 
     useEffect(() => {
         if (tag.length > 5) {
@@ -38,6 +41,7 @@ export const ListTagsComponent = () => {
     })
 
     const handleOnClickTagsFilter = (event) => {
+        setFilter(event.target.innerText.toLowerCase());
         dispatch(setSearchTag(event.target.innerText.toLowerCase()));
         dispatch(setTotalPages());
     }
@@ -46,6 +50,10 @@ export const ListTagsComponent = () => {
         setFilter(event.target.value);
         dispatch(setSearchTag(event.target.value));
         dispatch(setTotalPages());
+    }
+
+    const handleClearFilterTags = (event) => {
+        dispatch(setSearchTag(''));
     }
 
     return (
@@ -81,6 +89,7 @@ export const ListTagsComponent = () => {
                     </ul>
                 </>
             }
+            {queryTag !== '' && <ButtonTagStyled variant="filled" startIcon={<img src={trash} />} onClick={handleClearFilterTags}></ButtonTagStyled>}
         </section>
     )
 }

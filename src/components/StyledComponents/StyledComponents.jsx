@@ -63,16 +63,16 @@ export const FormControlStyled = styled(FormControl)`
 export const AlertStyled = styled(Alert)`
     &.MuiAlert-root {
         position: absolute;
-        top: ${ props => props.top || '10%' };
-        left: ${ props => props.left || '0%' };
+        top: ${props => props.top || '10%'};
+        left: ${props => props.left || '0%'};
         margin: 0em 2em;
         z-index: 10;
     }
 
     @media (min-width: 1200px) {
         &.MuiAlert-root {
-            top: ${ props => props.top || '9%' };
-            left: ${ props => props.left || '30.5%' };
+            top: ${props => props.top || '9%'};
+            left: ${props => props.left || '30.5%'};
             margin: 0em 0em
         }
     }
@@ -135,5 +135,24 @@ export const PaginationStyled = styled(Pagination)`
         background-color: #FFF;
         color: #02242D;
         border: 0.1em solid #02242D;
+    }
+`;
+
+export const ButtonTagStyled = styled(ButtonStyled)`
+    &.MuiButton-root {
+        height: 4em;
+        width: 2em;
+        margin: 1em .5em 2em .5em;
+    }
+
+    &.MuiButtonBase-root:hover {
+        background-color: #02242D;
+    }
+
+
+    @media (min-width: 1200px) {
+        &.MuiButton-root {
+            margin: 1em 2em 2em 2em;
+        }
     }
 `;
