@@ -3,17 +3,19 @@ import { searchTag, searchTerm } from "../search/searchSlice";
 import { getTagsPhoto } from "../search/searchThunk";
 
 const local = localStorage.getItem('favs') !== null ? JSON.parse(localStorage.getItem('favs')) : [];
-
 const initialTags = [];
+const items = 20
 
-const initialPages = local.length > 0 ?
-    local.length%20 === 0 ? 
-        parseInt((local.length/20).toFixed(0))
-    :
-        parseInt((local.length/20).toFixed(0))
-: parseInt(1);
+const rest_total_pages_per_data = local.length%items;
+const total_pages_per_data = parseInt(local.length/items.toFixed(0));
+
+
+
+const initialPages = (rest_total_pages_per_data === 0 || rest_total_pages_per_data >= 10) && local.length !== 0
+? total_pages_per_data : total_pages_per_data + 1;
 
 if (local.length > 0) {
+
     local.forEach((img) => {
         img.tags.forEach((tag) => {
             const indexTag = initialTags.findIndex((tag_fav) => tag_fav.tag === tag);
@@ -32,7 +34,7 @@ export const favoritesSlice = createSlice({
         data: local,
         tags: initialTags,
         img: {},
-        items_per_page: 20,
+        items_per_page: items,
         pages: initialPages,
         nPage: 1,
         status: 'idle',
