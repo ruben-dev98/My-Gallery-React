@@ -6,14 +6,14 @@ import edit from '../../assets/icon/edit.svg';
 import moreInfo from '../../assets/icon/plus-circle.svg';
 import { saveAs } from 'file-saver';
 import { Img } from '../../app/Img';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { UserContext } from '../../app/UserContext';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFavorite, favorites, removeFavorite, setImageFavorite } from '../../features/favorites/favoritesSlice';
 import { setImageHome } from '../../features/search/searchSlice';
 import { getTagsPhoto } from '../../features/search/searchThunk';
 
-export const ImgOptionsComponent = ({ display, img }) => {
+export const ImgOptionsComponent = ({ display, img, setShowAlert }) => {
     const user = useContext(UserContext);
     const dispatch = useDispatch();
     const favs = useSelector(favorites);
@@ -23,10 +23,12 @@ export const ImgOptionsComponent = ({ display, img }) => {
         if (favs.find((el) => el.id === img.id) === undefined) {
             dispatch(getTagsPhoto(img.id));
             dispatch(addFavorite(img.toJson()));
+            setShowAlert(true);
         }
     }
     const handleRemoveFavorite = () => {
         dispatch(removeFavorite(img.toJson()));
+        setShowAlert(true);
     }
     const handleShowModal = () => {
         if (!user) {

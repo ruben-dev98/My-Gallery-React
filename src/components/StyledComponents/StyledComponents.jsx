@@ -63,14 +63,17 @@ export const FormControlStyled = styled(FormControl)`
 export const AlertStyled = styled(Alert)`
     &.MuiAlert-root {
         position: absolute;
-        top: 10%;
-        left: 0%;
+        top: ${ props => props.top || '10%' };
+        left: ${ props => props.left || '0%' };
+        margin: 0em 2em;
+        z-index: 10;
     }
 
     @media (min-width: 1200px) {
         &.MuiAlert-root {
-            top: 9%;
-            left: 34.5%;
+            top: ${ props => props.top || '9%' };
+            left: ${ props => props.left || '30.5%' };
+            margin: 0em 0em
         }
     }
 
