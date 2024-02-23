@@ -1,11 +1,20 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { searchTag, searchTerm } from "../search/searchSlice";
 import { getTagsPhoto } from "../search/searchThunk";
-import { useSelector } from "react-redux";
 
 const local = localStorage.getItem('favs') !== null ? JSON.parse(localStorage.getItem('favs')) : [];
 
 const initialTags = [];
+
+const initialPages = local.length > 0 ? () => {
+    const nPages = local.length/20;
+    if(local.length%20 === 0) {
+        return nPages;
+    } else {
+        return nPages + 1;
+    }
+}
+: 1;
 
 if (local.length > 0) {
     local.forEach((img) => {
@@ -20,15 +29,14 @@ if (local.length > 0) {
     });
 }
 
-
-//const initialTags = tag__img || [];
-
 export const favoritesSlice = createSlice({
     name: 'favorites',
     initialState: {
         data: local,
-        img: {},
         tags: initialTags,
+        img: {},
+        items_per_page: 20,
+        pages: initialPages,
         status: 'idle',
         error: null
     },
@@ -104,8 +112,6 @@ export const filterFavorites = createSelector([favorites, searchTerm], (favs, se
 });
 
 export const filterFavoritesTag = createSelector([filterFavorites, searchTag], (favs, search) => {
-    /*const favs = filterFavorites(state);
-    const search = searchTag(state);*/
     if(search === '') {
         return favs;
     }
@@ -117,4 +123,6 @@ export const filterFavoritesTag = createSelector([filterFavorites, searchTag], (
         }
     });
 });
+
+export const items_per_page = (state) => state.favorites.items_per_page;
 export default favoritesSlice.reducer;

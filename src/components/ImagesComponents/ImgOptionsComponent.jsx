@@ -26,10 +26,12 @@ export const ImgOptionsComponent = ({ display, img, setShowAlert }) => {
             setShowAlert(true);
         }
     }
+
     const handleRemoveFavorite = () => {
         dispatch(removeFavorite(img.toJson()));
         setShowAlert(true);
     }
+
     const handleShowModal = () => {
         if (!user) {
             dispatch(setImageHome(img.toJson()));
@@ -38,6 +40,7 @@ export const ImgOptionsComponent = ({ display, img, setShowAlert }) => {
         }
         modal.showModal();
     }
+    
     const handleDownload = () => {
         const name = img.name.replaceAll(' ', '-');
         saveAs(img.url_full, name);
