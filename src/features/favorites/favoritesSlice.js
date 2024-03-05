@@ -1,41 +1,16 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { searchTag, searchTerm } from "../search/searchSlice";
 import { getTagsPhoto } from "../search/searchThunk";
-
-const local = localStorage.getItem('favs') !== null ? JSON.parse(localStorage.getItem('favs')) : [];
-const initialTags = [];
-const items = 20
-
-const rest_total_pages_per_data = local.length%items;
-const total_pages_per_data = parseInt(local.length/items.toFixed(0));
-
-
-
-const initialPages = (rest_total_pages_per_data === 0 || rest_total_pages_per_data >= 10) && local.length !== 0
-? total_pages_per_data : total_pages_per_data + 1;
-
-if (local.length > 0) {
-
-    local.forEach((img) => {
-        img.tags.forEach((tag) => {
-            const indexTag = initialTags.findIndex((tag_fav) => tag_fav.tag === tag);
-            if (indexTag !== -1) {
-                initialTags[indexTag].count += 1;
-            } else {
-                initialTags.push({ tag: tag, count: 1 });
-            }
-        })
-    });
-}
+import { initData, initItems, initTags, initTotal_pages } from "./initValuesFavouriteSlice";
 
 export const favoritesSlice = createSlice({
     name: 'favorites',
     initialState: {
-        data: local,
-        tags: initialTags,
+        data: initData,
+        tags: initTags,
         img: {},
-        items_per_page: items,
-        pages: initialPages,
+        items_per_page: initItems,
+        pages: initTotal_pages,
         nPage: 1,
         status: 'idle',
         error: null
@@ -65,7 +40,6 @@ export const favoritesSlice = createSlice({
             const total_pages = parseInt((state.data.length/state.items_per_page).toFixed(0));
             if(state.data.length%state.items_per_page === 0) state.pages = total_pages
             else state.pages = total_pages + 1;
-            //return state.filter((fav) => fav.id !== action.payload.id);
         },
         editDescription: (state, action) => {
             const { id, desc } = action.payload;
@@ -116,7 +90,7 @@ export const favoritesSlice = createSlice({
     }
 });
 
-export const { addFavorite, removeFavorite, /*getAllFavorites,*/ editDescription, sortFavorites, searchFavorite, setImageFavorite, setNumPage, setTotalPages } = favoritesSlice.actions;
+export const { addFavorite, removeFavorite, editDescription, sortFavorites, searchFavorite, setImageFavorite, setNumPage, setTotalPages } = favoritesSlice.actions;
 export const favorites = (state) => state.favorites.data;
 export const tags = (state) => state.favorites.tags;
 export const favImg = (state) => state.favorites.img;
