@@ -1,36 +1,106 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { ACCESS__KEY } from "../../../__var";
 
 export const loadData = createAsyncThunk('search/loadAllData', async () => {
-    const response = await fetch(`https://api.unsplash.com/photos?client_id=${ACCESS__KEY}&per_page=20`);
-    const json = await response.json();
-    return json;
+    try {
+        const response = await fetch(`https://api.unsplash.com/photos?client_id=${import.meta.env.VITE_ACCESS_KEY}&per_page=20`);
+        const status = response.status;
+        if (status === 200) {
+            const json = await response.json();
+            return json;
+        } else if (status === 404) {
+            console.log('Data Not Found');
+        } else if (status === 401) {
+            console.log('Unauthorized');
+        } else if (status === 500) {
+            console.log('Server Error');
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
 });
 
 export const searchByQuery = createAsyncThunk('search/loadDataByQuery', async (query) => {
-    const response = await fetch(`https://api.unsplash.com/search/photos?query=${query}&client_id=${ACCESS__KEY}&per_page=100`);
-    const json = await response.json();
-    json['query'] = query;
-    return json;
+    try {
+        const response = await fetch(`https://api.unsplash.com/search/photos?query=${query}&client_id=${import.meta.env.VITE_ACCESS_KEY}&per_page=100`);
+        const status = response.status;
+        if (status === 200) {
+            const json = await response.json();
+            json['query'] = query;
+            return json;
+        } else if (status === 404) {
+            console.log('Data Not Found');
+        } else if (status === 401) {
+            console.log('Unahutorized');
+        } else if (status === 500) {
+            console.log('Server Error');
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+
 });
 
 export const searchRandom = createAsyncThunk('search/loadRandomData', async () => {
-    const response = await fetch(`https://api.unsplash.com/photos/random?client_id=${ACCESS__KEY}&count=20`);
-    const json = await response.json();
-    return json;
+    try {
+        const response = await fetch(`https://api.unsplash.com/photos/random?client_id=${import.meta.env.VITE_ACCESS_KEY}&count=20`);
+        const status = response.status;
+        if (status === 200) {
+            const json = await response.json();
+            return json;
+        } else if (status === 404) {
+            console.log('Data Not Found');
+        } else if (status === 401) {
+            console.log('Unahutorized');
+        } else if (status === 500) {
+            console.log('Server Error');
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
 });
 
 export const getTagsPhoto = createAsyncThunk('favorites/getTagsPhoto', async (id) => {
-    const response = await fetch(`https://api.unsplash.com/photos/${id}?client_id=${ACCESS__KEY}`);
-    const json = await response.json();
-    return json;
+    try {
+        const response = await fetch(`https://api.unsplash.com/photos/${id}?client_id=${import.meta.env.VITE_ACCESS_KEY}`);
+        const status = response.status;
+        if (status === 200) {
+            const json = await response.json();
+            return json;
+        } else if (status === 404) {
+            console.log('Data Not Found');
+        } else if (status === 401) {
+            console.log('Unahutorized');
+        } else if (status === 500) {
+            console.log('Server Error');
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
 });
 
 
-export const getPhotosPage = createAsyncThunk('search/getPhotosPage', async({search, page}) => {
-    const response = await fetch(`https://api.unsplash.com/search/photos?query=${search}&page=${page}&client_id=${ACCESS__KEY}&per_page=20`);
-    const json = await response.json();
-    return json;
+export const getPhotosPage = createAsyncThunk('search/getPhotosPage', async ({ search, page }) => {
+    try {
+        const response = await fetch(`https://api.unsplash.com/search/photos?query=${search}&page=${page}&client_id=${import.meta.env.VITE_ACCESS_KEY}&per_page=20`);
+        const status = response.status;
+        if (status === 200) {
+            const json = await response.json();
+            return json;
+        } else if (status === 404) {
+            console.log('Data Not Found');
+        } else if (status === 401) {
+            console.log('Unahutorized');
+        } else if (status === 500) {
+            console.log('Server Error');
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
 })
 
 /*export const downloadPhoto = createAsyncThunk('search/downloadPhoto', async (url__download) => {
