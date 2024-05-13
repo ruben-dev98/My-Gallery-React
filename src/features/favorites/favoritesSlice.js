@@ -1,7 +1,9 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { searchTag, searchTerm } from "../search/searchSlice";
 import { getTagsPhoto } from "../search/searchThunk";
-import { initData, initItems, initTags, initTotal_pages } from "./initValuesFavouriteSlice";
+import { initValues } from "./initValuesFavouriteSlice";
+
+const {initData, initTags, initItems, initTotal_pages} = initValues();
 
 export const favoritesSlice = createSlice({
     name: 'favorites',
@@ -99,6 +101,9 @@ export const total_pages = (state) => state.favorites.pages;
 export const nPage = (state) => state.favorites.nPage;
 
 export const filterFavorites = createSelector([favorites, searchTerm], (favs, search) => {
+    if(favs === undefined) {
+        return [];
+    }
     return favs.filter((img) => img.description.toLowerCase().includes(search.toLowerCase()))
 });
 

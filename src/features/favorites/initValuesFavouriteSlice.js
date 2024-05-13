@@ -1,4 +1,4 @@
-const initValues = () => {
+export const initValues = () => {
         const local = localStorage.getItem('favs') !== null ? JSON.parse(localStorage.getItem('favs')) : [];
         const initialTags = [];
         const items = 20
@@ -25,5 +25,3 @@ const initValues = () => {
             'initTotal_pages': initialPages
         }
 }
-
-export const {initData, initTags, initItems, initTotal_pages} = initValues;
