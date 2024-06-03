@@ -45,6 +45,7 @@ export const searchSlice = createSlice({
             state.data = action.payload.results;
             state.searchQuery = action.payload.query;
             state.pages = action.payload.total_pages;
+            state.status = 'idle';
         }) 
         .addCase(searchByQuery.rejected, (state, action) => {
             state.status = 'rejected';
@@ -57,6 +58,7 @@ export const searchSlice = createSlice({
         .addCase(searchRandom.fulfilled, (state, action) => {
             state.status = 'fulfilled';
             state.data = action.payload;
+            state.status = 'idle';
         }) 
         .addCase(searchRandom.rejected, (state, action) => {
             state.status = 'rejected';
@@ -70,6 +72,7 @@ export const searchSlice = createSlice({
             state.status = 'fulfilled';
             state.data = action.payload.results;
             if(state.search !== '') state.searchQuery = '' ;
+            state.status = 'idle';
         }) 
         .addCase(getPhotosPage.rejected, (state, action) => {
             state.status = 'rejected';

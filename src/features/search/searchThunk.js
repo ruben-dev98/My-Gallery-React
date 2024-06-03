@@ -22,7 +22,7 @@ export const loadData = createAsyncThunk('search/loadAllData', async () => {
 
 export const searchByQuery = createAsyncThunk('search/loadDataByQuery', async (query) => {
     try {
-        const response = await fetch(`https://api.unsplash.com/search/photos?query=${query}&client_id=${import.meta.env.VITE_ACCESS_KEY}&per_page=100`);
+        const response = await fetch(`https://api.unsplash.com/search/photos?query=${query}&client_id=${import.meta.env.VITE_ACCESS_KEY}&per_page=20`);
         const status = response.status;
         if (status === 200) {
             const json = await response.json();
