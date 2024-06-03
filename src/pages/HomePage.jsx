@@ -7,6 +7,7 @@ import { ListImageComponent } from "../components/ListComponents/ListImagesCompo
 import { PaginationItem } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 import { PaginationStyled } from "../components/StyledComponents/StyledComponents";
+import Loading from "../components/Loading/Loading";
 
 export const HomePage = () => {
     const location = useLocation();
@@ -56,7 +57,7 @@ export const HomePage = () => {
                     )}
                 ></PaginationStyled>
             }
-            {showSpinner ? <p>Loading...</p> : <ListImageComponent listImages={data} />}
+            {showSpinner ? <Loading></Loading> : <ListImageComponent listImages={data} />}
         </>
     );
 };
