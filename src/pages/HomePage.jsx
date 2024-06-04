@@ -57,7 +57,7 @@ export const HomePage = () => {
                     )}
                 ></PaginationStyled>
             }
-            {showSpinner ? <Loading></Loading> : <ListImageComponent listImages={data} />}
+            {showSpinner && data ? <Loading></Loading> : <ListImageComponent listImages={data} />}
         </>
     );
 };

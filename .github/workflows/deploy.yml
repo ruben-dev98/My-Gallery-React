@@ -22,11 +22,10 @@ jobs:
         uses: SpicyPizza/create-envfile@v2.0
         with:
           envkey_VITE_ACCESS_KEY: ${{ secrets.VITE_ACCESS_KEY }}
-          directory: './'
+          directory: './dist'
           file_name: .env
           fail_on_empty: true
           sort_keys: false
-      - run: cp .env dist/.env
       - uses: jakejarvis/s3-sync-action@master
         with:
           args: --acl public-read --delete
