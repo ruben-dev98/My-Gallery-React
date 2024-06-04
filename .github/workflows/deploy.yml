@@ -26,7 +26,7 @@ jobs:
           file_name: .env
           fail_on_empty: false
           sort_keys: false
-      - run: ls -a
+      - run: cp .env dist/.env
       - uses: jakejarvis/s3-sync-action@master
         with:
           args: --acl public-read --delete
