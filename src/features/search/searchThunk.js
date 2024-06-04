@@ -14,7 +14,7 @@ export const loadData = createAsyncThunk('search/loadAllData', async () => {
         } else if (status === 500) {
             console.log('Server Error');
         }
-
+        return [];
     } catch (error) {
         console.log(error);
     }
@@ -35,7 +35,7 @@ export const searchByQuery = createAsyncThunk('search/loadDataByQuery', async (q
         } else if (status === 500) {
             console.log('Server Error');
         }
-
+        return [];
     } catch (error) {
         console.log(error);
     }
@@ -56,7 +56,7 @@ export const searchRandom = createAsyncThunk('search/loadRandomData', async () =
         } else if (status === 500) {
             console.log('Server Error');
         }
-
+        return [];
     } catch (error) {
         console.log(error);
     }
@@ -76,7 +76,7 @@ export const getTagsPhoto = createAsyncThunk('favorites/getTagsPhoto', async (id
         } else if (status === 500) {
             console.log('Server Error');
         }
-
+        return [];
     } catch (error) {
         console.log(error);
     }
@@ -97,7 +97,7 @@ export const getPhotosPage = createAsyncThunk('search/getPhotosPage', async ({ s
         } else if (status === 500) {
             console.log('Server Error');
         }
-
+        return [];
     } catch (error) {
         console.log(error);
     }

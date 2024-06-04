@@ -17,7 +17,7 @@ jobs:
       - name: Install Dependencies
         run: npm install
       - name: Build Project
-        run: npm run build
+        run: vite build
       - name: Make envfile
         uses: SpicyPizza/create-envfile@v2.0
         with:
