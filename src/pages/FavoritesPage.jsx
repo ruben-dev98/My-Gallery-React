@@ -58,7 +58,7 @@ export const FavoritesPage = () => {
                         )}
                     ></PaginationStyled>
                 }
-                <ListImageComponent listImages={data} />
+                <ListImageComponent listImages={data ? data : []} />
             </UserContext.Provider>
         </>
     )
